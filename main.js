@@ -2,7 +2,7 @@ var EntMgr = {
   _ents : [],
 
   ent: function(comps, attributes) {
-    var e = Crafty.e(comps);  // ['color']('rgb(0, 128, 128)')['attr']({x: 1200, y: 0, w: 4, h: 1000});
+    var e = Crafty.e(comps);
     for (var key in attributes) {
       if (attributes.hasOwnProperty(key)) {
         e = (e[key])(attributes[key]);
@@ -54,27 +54,7 @@ var Game = {
     createComponents();
 
     loadMap('test');
-
-//     // Ground
-//     EntMgr.ent("Ground, 2D, Canvas, Color", {
-//       color: 'rgb(0, 128, 128)',
-//       attr: {x: 500, y: 250, w: 1000, h: 4}
-//     });
-//     EntMgr.ent("Ground, 2D, Canvas, Color", {
-//       color: 'rgb(0, 128, 0)',
-//       attr: {x: 0, y: 200, w: 1000, h: 4}
-//     });
-// 
-//     // Wall
-//     EntMgr.ent("Wall, 2D, Canvas, Color, Collision", {
-//       color : 'rgb(128, 128, 0)',
-//       attr : {x: 504, y: 200, w: 4, h: 1000}
-//     });
-//     EntMgr.ent("Wall, 2D, Canvas, Color, Collision", {
-//       color : 'rgb(128, 128, 0)',
-//       attr : {x: 1200, y: 0, w: 4, h: 1000}
-//     });
-// 
+ 
     Crafty.e("Keyboard")
       .bind('KeyDown', function() {
         if (this.isDown('A')) {
@@ -105,7 +85,7 @@ var Game = {
     //Score boards
     Crafty.e("LeftPoints, DOM, 2D, Text")
         .attr({ x: 20, y: 20, w: 100, h: 20, points: 0 })
-        .text("0 Points");
+         .text("0 Points");
     Crafty.e("RightPoints, DOM, 2D, Text")
         .attr({ x: 515, y: 20, w: 100, h: 20, points: 0 })
         .text("0 Points");
@@ -114,7 +94,3 @@ var Game = {
 };
 
 window.addEventListener('load', Game.start);
-
-// window.setTimeout(function(){
-//   window.location.reload(1);
-// }, 200000);
