@@ -54,7 +54,18 @@ var Game = {
     createComponents();
 
     loadMap('test');
- 
+
+    // TODO bind to map
+    Crafty.audio.add('bgm', 'assets/audio/test.ogg');
+    Crafty.load(["assets/audio/test.ogg"], 
+        function complete() {
+        },
+        function progress(e) {
+        },
+        function error(e) {
+        }
+    );
+
     Crafty.e("Keyboard")
       .bind('KeyDown', function() {
         if (this.isDown('A')) {
@@ -81,15 +92,6 @@ var Game = {
     Crafty.viewport.init(600, 300);
     Crafty.viewport.bounds = null;
     Crafty.viewport.follow(cannon, 100, 100);
-
-    //Score boards
-    Crafty.e("LeftPoints, DOM, 2D, Text")
-        .attr({ x: 20, y: 20, w: 100, h: 20, points: 0 })
-         .text("0 Points");
-    Crafty.e("RightPoints, DOM, 2D, Text")
-        .attr({ x: 515, y: 20, w: 100, h: 20, points: 0 })
-        .text("0 Points");
-
   }
 };
 

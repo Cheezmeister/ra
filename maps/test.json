@@ -46,5 +46,17 @@
         "h": 1000
       }
     }
+  },
+  {
+    "comps": "Powerup, 2D, Canvas, Color",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "attr": {
+        "x": 369.2820323027554,
+        "y": 137.2,
+        "w": 4,
+        "h": 4
+      }
+    }
   }
 ]

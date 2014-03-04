@@ -30,6 +30,7 @@ var createComponents = function() {
       });
     Crafty.viewport.follow(player, 100, 100);
     G.player = player;
+    Crafty.audio.play('bgm');
   };
 
   Crafty.c("SpawnCannon", {
@@ -48,6 +49,18 @@ var createComponents = function() {
       this._cannonAngle = angle * Math.PI / 180;
       this._cannonvel = vel;
       return this;
+    }
+  });
+
+  Crafty.c("Trigger", { 
+    init: function() {
+      this.requires('Collision');
+    },
+
+    collect: function(eventName, data) {
+    },
+
+    at: function(time, eventName, data) {
     }
   });
 
