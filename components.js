@@ -1,6 +1,8 @@
 var G = { };
 var createComponents = function() {
 
+  Crafty.alias('2DCanvasColor', '2D, Canvas, Color');
+
   var spawnPlayer = function(xPos, yPos, angle, vel) {
     //Player
     var player = Crafty.e("Player, 2D, Canvas, Color, Collision, Gravity, Keyboard")
@@ -57,28 +59,29 @@ var createComponents = function() {
 
   Crafty.c("Confetti", {
     init: function() {
-      this.requires('2D, Canvas, Color, Particles');
+      this.requires('2DCanvasColor, Particles');
     },
     confetti: function() {
       var params = {
         max: 50,
-        gravity: {x: 0, y: 0.1}
+        gravity: {x: 0, y: 0.1},
+        duration: 900
       };
       this.particles({
         maxParticles: params.max,
         // Produce only the particles forced below
-        duration: 900,
+        duration: params.duration,
         size: 10,
         sizeRandom: 9,
         speedRandom: 10,
-        lifeSpan: 901,
+        lifeSpan: params.duration + 1,
         lifeSpanRandom: 200,
         startColour: [250, 50, 0, 10],
         endColour: [50, 250, 250, 100],
         fastMode: true,
         gravity: { x: 0.0, y: 0.1}
       });
-      for (var i = 0; i < params.max; ++i) {
+      for (var i = 0; i < this._Particles.maxParticles; ++i) {
         this._Particles.addParticle();
       }
       return this;
@@ -105,6 +108,12 @@ var createComponents = function() {
         Crafty.trigger(params.trigger, params.data);
       });
       return this;
+    }
+  });
+
+  Crafty.c('Selectable', {
+    init: function() {
+      this.requires('Mouse, 2DCanvasColor');
     }
   });
 

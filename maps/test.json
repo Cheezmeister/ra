@@ -1,6 +1,6 @@
 [
   {
-    "comps": "Ground, 2D, Canvas, Color",
+    "comps": "Ground, 2DCanvasColor",
     "attributes": {
       "color": "rgb(0, 128, 128)",
       "attr": {
@@ -12,7 +12,7 @@
     }
   },
   {
-    "comps": "Ground, 2D, Canvas, Color",
+    "comps": "Ground, 2DCanvasColor",
     "attributes": {
       "color": "rgb(0, 128, 0)",
       "attr": {
@@ -24,7 +24,7 @@
     }
   },
   {
-    "comps": "Wall, 2D, Canvas, Color, Collision",
+    "comps": "Wall, 2DCanvasColor, Collision",
     "attributes": {
       "color": "rgb(128, 128, 0)",
       "attr": {
@@ -36,7 +36,7 @@
     }
   },
   {
-    "comps": "Wall, 2D, Canvas, Color, Collision",
+    "comps": "Wall, 2DCanvasColor, Collision",
     "attributes": {
       "color": "rgb(128, 128, 0)",
       "attr": {
@@ -48,7 +48,7 @@
     }
   },
   {
-    "comps": "Trigger, Metronome, 2D, Canvas, Color",
+    "comps": "Trigger, Metronome, 2DCanvasColor",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "collect": {
@@ -65,7 +65,7 @@
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color",
+    "comps": "Mark, 2DCanvasColor",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
@@ -77,7 +77,7 @@
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color",
+    "comps": "Mark, 2DCanvasColor",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
@@ -89,7 +89,7 @@
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color",
+    "comps": "Mark, 2DCanvasColor",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
