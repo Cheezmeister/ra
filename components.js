@@ -3,7 +3,7 @@ var createComponents = function() {
 
   var spawnPlayer = function(xPos, yPos, angle, vel) {
     //Player
-    var player = Crafty.e("2D, Canvas, Color, Collision, Gravity, Keyboard")
+    var player = Crafty.e("Player, 2D, Canvas, Color, Collision, Gravity, Keyboard")
       .color('rgb(0,0,255)')
       .gravity('Ground')
       .attr({ x: xPos, y: yPos, w: 20, h: 20,
@@ -57,15 +57,32 @@ var createComponents = function() {
       this.requires('Collision');
     },
 
-    collect: function(eventName, data) {
-    },
-
-    at: function(time, eventName, data) {
+    collect: function(params) {
+      this.onHit('Player', function() {
+//         Crafty.trigger(params.trigger, params.data);
+        var confetti = Crafty.e("2D, Canvas, Color, Particles")
+          .attr({x: 400, y: 100, w: 4, h: 4})
+          .particles({
+            maxParticles: 50,
+            // Produce only the particles forced below
+            duration: 900,
+            size: 10,
+            sizeRandom: 9,
+            speedRandom: 10,
+            lifeSpan: 901,
+            lifeSpanRandom: 200,
+            startColour: [250, 50, 0, 10],
+            endColour: [50, 250, 250, 100],
+            fastMode: true,
+            gravity: { x: 0.1, y: 0}
+          });
+        for (var i = 0; i < 50; ++i) {
+          confetti._Particles.addParticle();
+        }
+        this.destroy();
+      });
+      return this;
     }
-  });
-
-  Crafty.c('Powerup', {
-    
   });
 
   Crafty.c('Map', {

@@ -48,12 +48,53 @@
     }
   },
   {
-    "comps": "Powerup, 2D, Canvas, Color",
+    "comps": "Trigger, Metronome, 2D, Canvas, Color",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "collect": {
+        "trigger": "SpawnConfetti",
+        "data": {}
+      },
+      "attr": {
+        "time": 0,
+        "x": 369.2820323027554,
+        "y": 137.2,
+        "w": 4,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Mark, 2D, Canvas, Color",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
-        "x": 369.2820323027554,
-        "y": 137.2,
+        "x": 940.8587988004874,
+        "y": 180,
+        "w": 4,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Mark, 2D, Canvas, Color",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "attr": {
+        "x": 849.926131403121,
+        "y": 230,
+        "w": 4,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Mark, 2D, Canvas, Color",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "attr": {
+        "x": 581.4582562299438,
+        "y": 230,
         "w": 4,
         "h": 4
       }

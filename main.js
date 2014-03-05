@@ -55,7 +55,7 @@ var Game = {
 
     loadMap('test');
 
-    // TODO bind to map
+    // Audio Track TODO bind to map
     Crafty.audio.add('bgm', 'assets/audio/test.ogg');
     Crafty.load(["assets/audio/test.ogg"], 
         function complete() {
@@ -66,6 +66,7 @@ var Game = {
         }
     );
 
+    // Global keyboard events (dev)
     Crafty.e("Keyboard")
       .bind('KeyDown', function() {
         if (this.isDown('A')) {
