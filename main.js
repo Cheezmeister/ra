@@ -47,13 +47,19 @@ var loadMap = function(file) {
 
 var Game = {
 
-  start : function() {
+  debug: true,
+  devMode: true,
+
+  start: function() {
     Crafty.init(6000, 300);
     Crafty.background('rgb(127,127,127)');
 
     createComponents();
 
     loadMap('test');
+    if (Game.debug) {
+      Crafty.audio.toggleMute();
+    }
 
     // Audio Track TODO bind to map
     Crafty.audio.add('bgm', 'assets/audio/test.ogg');
@@ -80,6 +86,8 @@ var Game = {
             }
           });
           updateMap();
+        } else if (this.isDown('M')) {
+          Crafty.audio.toggleMute();
         }
       });
 
@@ -88,12 +96,22 @@ var Game = {
     var cannon = Crafty.e("SpawnCannon")
       .cannon(30, 5)
       .attr({x: 300, y: 150, w: 40, h: 40});
+    if (Game.debug) {
+      cannon._fire();
+    }
 
     // Camera
-    Crafty.viewport.init(600, 300);
+    // TODO variable browser width
+    Crafty.viewport.init(1200, 500);
     Crafty.viewport.bounds = null;
     Crafty.viewport.follow(cannon, 100, 100);
   }
 };
 
 window.addEventListener('load', Game.start);
+
+if (Game.debug) {
+  window.setTimeout(function() {
+    window.location.reload();
+  }, 5000);
+}

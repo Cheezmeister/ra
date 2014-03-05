@@ -35,13 +35,16 @@ var createComponents = function() {
 
   Crafty.c("SpawnCannon", {
 
+    _fire: function() {
+      spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonvel);
+      this.destroy();
+    },
     init : function() {
       this.requires('2D, Canvas, Keyboard, Color');
       this.color('rgb(50, 0, 150)');
       this.bind('KeyDown', function() {
         if (this.isDown('SPACE')) {
-          spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonvel);
-          this.destroy();
+          this._fire();
         }
       });
     },
@@ -52,34 +55,54 @@ var createComponents = function() {
     }
   });
 
+  Crafty.c("Confetti", {
+    init: function() {
+      this.requires('2D, Canvas, Color, Particles');
+    },
+    confetti: function() {
+      var params = {
+        max: 50,
+        gravity: {x: 0, y: 0.1}
+      };
+      this.particles({
+        maxParticles: params.max,
+        // Produce only the particles forced below
+        duration: 900,
+        size: 10,
+        sizeRandom: 9,
+        speedRandom: 10,
+        lifeSpan: 901,
+        lifeSpanRandom: 200,
+        startColour: [250, 50, 0, 10],
+        endColour: [50, 250, 250, 100],
+        fastMode: true,
+        gravity: { x: 0.0, y: 0.1}
+      });
+      for (var i = 0; i < params.max; ++i) {
+        this._Particles.addParticle();
+      }
+      return this;
+    }
+  });
+
   Crafty.c("Trigger", { 
     init: function() {
       this.requires('Collision');
+      this.bind('SpawnConfetti', function(data) {
+        var confetti = Crafty.e("Confetti")
+          .attr({
+            x: data.x,
+            y: data.y,
+            w: data.w,
+            h: data.h
+        }).confetti();
+        this.destroy();
+      });
     },
 
     collect: function(params) {
       this.onHit('Player', function() {
-//         Crafty.trigger(params.trigger, params.data);
-        var confetti = Crafty.e("2D, Canvas, Color, Particles")
-          .attr({x: 400, y: 100, w: 4, h: 4})
-          .particles({
-            maxParticles: 50,
-            // Produce only the particles forced below
-            duration: 900,
-            size: 10,
-            sizeRandom: 9,
-            speedRandom: 10,
-            lifeSpan: 901,
-            lifeSpanRandom: 200,
-            startColour: [250, 50, 0, 10],
-            endColour: [50, 250, 250, 100],
-            fastMode: true,
-            gravity: { x: 0.1, y: 0}
-          });
-        for (var i = 0; i < 50; ++i) {
-          confetti._Particles.addParticle();
-        }
-        this.destroy();
+        Crafty.trigger(params.trigger, params.data);
       });
       return this;
     }
