@@ -6,6 +6,6 @@ Update EntMgr ents on resize, destroy etc.
 
 Components
   * The Drop
-  * The Confetti
+  * The Powerup (Superman)
   * The Flash
   * Enemy (collide = die)

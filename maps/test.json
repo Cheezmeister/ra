@@ -92,16 +92,16 @@
       },
       "attr": {
         "x": 940.8587988004874,
-        "y": 180,
+        "y": 100,
         "w": 4,
-        "h": 4
+        "h": 100
       }
     }
   },
   {
     "comps": "2D, Canvas, Color, Trigger",
     "attributes": {
-      "color": "rgb(240, 0, 140)",
+      "color": "red",
       "collect": {
         "trigger": "destroy",
         "target": "847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
@@ -109,9 +109,9 @@
       },
       "attr": {
         "x": 832.6056233274321,
-        "y": 279,
+        "y": 204,
         "w": 4,
-        "h": 40
+        "h": 100
       }
     }
   },
