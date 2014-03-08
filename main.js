@@ -5,6 +5,10 @@ var EntMgr = {
     var e = Crafty.e(comps);
     for (var key in attributes) {
       if (attributes.hasOwnProperty(key)) {
+        var type = typeof(e[key]);
+        if (type !== typeof(Function)) {
+          console.log(key + " is a " + type + ", expected a function");
+        }
         e = (e[key])(attributes[key]);
       }
     }
@@ -48,7 +52,7 @@ var loadMap = function(file) {
 var Game = {
 
   debug: true,
-  devMode: true,
+  devMode: false,
 
   start: function() {
     Crafty.init(6000, 300);
@@ -72,6 +76,17 @@ var Game = {
         }
     );
 
+    Crafty.e('GlobalTriggers')
+      .bind('SpawnConfetti', function(data) {
+        var confetti = Crafty.e("Confetti")
+          .attr({
+            x: data.x,
+            y: data.y,
+            w: data.w,
+            h: data.h
+        }).confetti();
+      });
+
     // Global keyboard events (dev)
     Crafty.e("Keyboard")
       .bind('KeyDown', function() {
@@ -82,7 +97,8 @@ var Game = {
               x: G.player._x,
               y: G.player._y,
               w: 4,
-              h: 4
+              h: 4,
+              time: event.timestamp || new Date().getTime()
             }
           });
           updateMap();
@@ -96,21 +112,22 @@ var Game = {
     var cannon = Crafty.e("SpawnCannon")
       .cannon(30, 5)
       .attr({x: 300, y: 150, w: 40, h: 40});
-    if (Game.debug) {
-      cannon._fire();
-    }
 
     // Camera
     // TODO variable browser width
     Crafty.viewport.init(1200, 500);
     Crafty.viewport.bounds = null;
     Crafty.viewport.follow(cannon, 100, 100);
+
+    if (Game.devMode) {
+      cannon._fire();
+    }
   }
 };
 
 window.addEventListener('load', Game.start);
 
-if (Game.debug) {
+if (Game.devMode) {
   window.setTimeout(function() {
     window.location.reload();
   }, 5000);

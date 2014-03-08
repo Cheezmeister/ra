@@ -35,6 +35,7 @@ var createComponents = function() {
     Crafty.audio.play('bgm');
   };
 
+  // SpawnCannon
   Crafty.c("SpawnCannon", {
 
     _fire: function() {
@@ -57,6 +58,7 @@ var createComponents = function() {
     }
   });
 
+  // Confetti
   Crafty.c("Confetti", {
     init: function() {
       this.requires('2DCanvasColor, Particles');
@@ -88,32 +90,70 @@ var createComponents = function() {
     }
   });
 
+  // Metronome
+  Crafty.c("Metronome", { 
+    init: function() {
+      this.requires('Collision');
+    },
+    metronome: function() {
+      this.onHit('Player', function() {
+        Game.time = this.attr('time');
+      });
+    }
+  });
+
+  // Trigger
   Crafty.c("Trigger", { 
     init: function() {
       this.requires('Collision');
-      this.bind('SpawnConfetti', function(data) {
-        var confetti = Crafty.e("Confetti")
-          .attr({
-            x: data.x,
-            y: data.y,
-            w: data.w,
-            h: data.h
-        }).confetti();
-        this.destroy();
-      });
+    },
+
+    target: function(params) {
+      return this;
     },
 
     collect: function(params) {
       this.onHit('Player', function() {
-        Crafty.trigger(params.trigger, params.data);
+        if (params.target) {
+          var func = this[params.trigger];
+          var target = Crafty(params.target);
+
+          if (target && target[params.trigger]) {
+            (target[params.trigger])(params.data);
+          }
+          
+        } else {
+          Crafty.trigger(params.trigger, params.data);
+        }
+        this.destroy();
       });
       return this;
     }
   });
 
+  // Selectable
   Crafty.c('Selectable', {
+    _selected: false,
+
     init: function() {
       this.requires('Mouse, 2DCanvasColor');
+      this.bind('Click', function() {
+        this.select(!this._selected);
+      });
+    },
+
+    select: function(on) {
+      if (_selected === on) return;
+      _selected = on;
+    }
+
+  });
+
+  Crafty.c('Mark', {
+    init: function() {
+      if (G.debug) {
+        this.requires('2DCanvasColor');
+      }
     }
   });
 

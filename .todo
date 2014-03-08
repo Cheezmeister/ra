@@ -3,9 +3,10 @@ How to for sure sync timings
 Metronome/timer/trigger system
 
 Mouse resizing walls
-  Dev mode
+  Selectable
 
 Components
   * The Drop
   * The Confetti
   * The Flash
+  * Enemy (collide = die)

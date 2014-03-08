@@ -12,13 +12,26 @@
     }
   },
   {
+    "comps": "Ground, 2DCanvasColor, TriggerTarget, 41F156BE-A63B-11E3-A51E-ADAADB0F677B",
+    "attributes": {
+      "color": "rgb(0, 128, 255)",
+      "setName": "tt-41F156BE-A63B-11E3-A51E-ADAADB0F677B",
+      "attr": {
+        "x": 800,
+        "y": 200,
+        "w": 800,
+        "h": 4
+      }
+    }
+  },
+  {
     "comps": "Ground, 2DCanvasColor",
     "attributes": {
       "color": "rgb(0, 128, 0)",
       "attr": {
         "x": 0,
         "y": 200,
-        "w": 1000,
+        "w": 800,
         "h": 4
       }
     }
@@ -65,9 +78,14 @@
     }
   },
   {
-    "comps": "Mark, 2DCanvasColor",
+    "comps": "Trigger, Mark, 2DCanvasColor",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
+      "color": "rgb(140, 0, 240)",
+      "collect": {
+        "trigger": "destroy",
+        "target": "41F156BE-A63B-11E3-A51E-ADAADB0F677B",
+        "data": {}
+      },
       "attr": {
         "x": 940.8587988004874,
         "y": 180,
