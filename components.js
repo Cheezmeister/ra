@@ -2,6 +2,8 @@ var G = { };
 var createComponents = function() {
 
   Crafty.alias('2DCanvasColor', '2D, Canvas, Color');
+  Crafty.alias('AdjustableGround', 'Adjustable, Ground');
+  // Crafty.alias('Ground', '2DCanvasColor, Adjustable');
 
   var spawnPlayer = function(xPos, yPos, angle, vel) {
     //Player
@@ -97,7 +99,51 @@ var createComponents = function() {
     },
     metronome: function() {
       this.onHit('Player', function() {
-        Game.time = this.attr('time');
+        Game.setTime(this.attr('time'));
+      });
+    }
+  });
+
+  // Adjustable
+  Crafty.c("Adjustable", {
+    init: function() {
+      this.requires('Selectable, Keyboard');
+      this.bind('KeyDown', function() {
+        if (!this._selected) return;
+
+        var amt = 1;
+        if (this.isDown('SHIFT')) amt *= 4;
+        if (this.isDown('CTRL')) amt *= 16;
+
+        if (this.isDown('DELETE')) {
+          this.destroy();
+          Crafty.trigger('Invalidate');
+          return;
+        }
+
+        if (this.isDown('W')) {
+          this.y = this._y - amt;
+          this.h = this._h + amt;
+        } else if (this.isDown('S')) {
+          this.y = this._y + amt;
+          this.h = this._h - amt;
+        } else if (this.isDown('UP_ARROW')) {
+          this.h = this._h - amt;
+        } else if (this.isDown('DOWN_ARROW')) {
+          this.h = this._h + amt;
+        } else if (this.isDown('A')) {
+          this.x = this._x - amt;
+          this.w = this._w + amt;
+        } else if (this.isDown('D')) {
+          this.x = this._x + amt;
+          this.w = this._w - amt;
+        } else if (this.isDown('LEFT_ARROW')) {
+          this.w = this._w - amt;
+        } else if (this.isDown('RIGHT_ARROW')) {
+          this.w = this._w + amt;
+        } else return;
+
+        Crafty.trigger('Invalidate');
       });
     }
   });
@@ -138,21 +184,27 @@ var createComponents = function() {
     init: function() {
       this.requires('Mouse, 2DCanvasColor');
       this.bind('Click', function() {
-        this.select(!this._selected);
+        this.select('toggle');
+        Crafty.trigger('Invalidate');
+      });
+      this.bind('Draw', function(e) {
+        if (!this._selected) return;
+        e.ctx.strokeStyle = (this._color === '#000000' ? '#ffffff' : '#000000');
+        e.ctx.strokeRect(e.pos._x, e.pos._y, e.pos._w, e.pos._h);
       });
     },
 
     select: function(on) {
-      if (_selected === on) return;
-      _selected = on;
+      if (this._selected === on) return;
+      this._selected = ((on === 'toggle') ? !this._selected : on);
     }
 
   });
 
   Crafty.c('Mark', {
     init: function() {
-      if (G.debug) {
-        this.requires('2DCanvasColor');
+      if (Game.debug) {
+        this.requires('Adjustable, 2DCanvasColor');
       }
     }
   });

@@ -2,8 +2,7 @@ How to for sure sync timings
 
 Metronome/timer/trigger system
 
-Mouse resizing walls
-  Selectable
+Update EntMgr ents on resize, destroy etc.
 
 Components
   * The Drop

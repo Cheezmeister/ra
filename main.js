@@ -54,14 +54,22 @@ var Game = {
   debug: true,
   devMode: false,
 
+  width: 1200,
+  height: 500,
+
+  setTime: function(time) {
+    this._lastTime = time;
+    this._timer.text(time);
+  },
+
   start: function() {
-    Crafty.init(6000, 300);
+    Crafty.init(6000, 1000);
     Crafty.background('rgb(127,127,127)');
 
     createComponents();
 
     loadMap('test');
-    if (Game.debug) {
+    if (Game.devMode) {
       Crafty.audio.toggleMute();
     }
 
@@ -89,25 +97,32 @@ var Game = {
 
     // Global keyboard events (dev)
     Crafty.e("Keyboard")
+      .bind('MapUpdated', function() {
+        updateMap();
+      })
       .bind('KeyDown', function() {
-        if (this.isDown('A')) {
+        if (this.isDown('M')) {
           EntMgr.ent("Mark, 2D, Canvas, Color", {
             color: 'rgb(240, 0, 240)',
             attr: { 
               x: G.player._x,
               y: G.player._y,
               w: 4,
-              h: 4,
-              time: event.timestamp || new Date().getTime()
+              h: 40,
+              time: new Date().getTime() - Game._lastTime
             }
           });
           updateMap();
-        } else if (this.isDown('M')) {
+        } else if (this.isDown('V')) {
           Crafty.audio.toggleMute();
         }
       });
 
     updateMap();
+
+    Game._timer = Crafty.e('2D, DOM, Text')
+      .attr({x: 100, y: 100})
+      .text(0);
 
     var cannon = Crafty.e("SpawnCannon")
       .cannon(30, 5)
@@ -115,8 +130,7 @@ var Game = {
 
     // Camera
     // TODO variable browser width
-    Crafty.viewport.init(1200, 500);
-    Crafty.viewport.bounds = null;
+    Crafty.viewport.init(Game.width, Game.height);
     Crafty.viewport.follow(cannon, 100, 100);
 
     if (Game.devMode) {

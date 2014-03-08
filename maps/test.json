@@ -1,31 +1,30 @@
-[
-  {
-    "comps": "Ground, 2DCanvasColor",
+[ {
+    "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
     "attributes": {
       "color": "rgb(0, 128, 128)",
       "attr": {
         "x": 500,
-        "y": 250,
-        "w": 1000,
+        "y": 300,
+        "w": 700,
         "h": 4
       }
     }
   },
   {
-    "comps": "Ground, 2DCanvasColor, TriggerTarget, 41F156BE-A63B-11E3-A51E-ADAADB0F677B",
+    "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 41F156BE-A63B-11E3-A51E-ADAADB0F677B",
     "attributes": {
       "color": "rgb(0, 128, 255)",
-      "setName": "tt-41F156BE-A63B-11E3-A51E-ADAADB0F677B",
+      "setName": "41F156BE-A63B-11E3-A51E-ADAADB0F677B",
       "attr": {
         "x": 800,
         "y": 200,
-        "w": 800,
+        "w": 400,
         "h": 4
       }
     }
   },
   {
-    "comps": "Ground, 2DCanvasColor",
+    "comps": "Ground, Adjustable, 2DCanvasColor",
     "attributes": {
       "color": "rgb(0, 128, 0)",
       "attr": {
@@ -37,7 +36,7 @@
     }
   },
   {
-    "comps": "Wall, 2DCanvasColor, Collision",
+    "comps": "Wall, Adjustable, 2DCanvasColor, Collision",
     "attributes": {
       "color": "rgb(128, 128, 0)",
       "attr": {
@@ -49,7 +48,7 @@
     }
   },
   {
-    "comps": "Wall, 2DCanvasColor, Collision",
+    "comps": "Wall, Adjustable, 2DCanvasColor, Collision",
     "attributes": {
       "color": "rgb(128, 128, 0)",
       "attr": {
@@ -66,7 +65,12 @@
       "color": "rgb(240, 0, 240)",
       "collect": {
         "trigger": "SpawnConfetti",
-        "data": {"x": 800, "y": 100, "w": 4, "h": 4}
+        "data": {
+          "x": 800,
+          "y": 100,
+          "w": 4,
+          "h": 4
+        }
       },
       "attr": {
         "time": 0,
@@ -78,7 +82,7 @@
     }
   },
   {
-    "comps": "Trigger, Mark, 2DCanvasColor",
+    "comps": "Trigger, 2DCanvasColor",
     "attributes": {
       "color": "rgb(140, 0, 240)",
       "collect": {
@@ -95,26 +99,32 @@
     }
   },
   {
-    "comps": "Mark, 2DCanvasColor",
+    "comps": "2D, Canvas, Color, Trigger",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
+      "color": "rgb(240, 0, 140)",
+      "collect": {
+        "trigger": "destroy",
+        "target": "847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
+        "data": {}
+      },
       "attr": {
-        "x": 849.926131403121,
-        "y": 230,
+        "x": 832.6056233274321,
+        "y": 279,
         "w": 4,
-        "h": 4
+        "h": 40
       }
     }
   },
   {
-    "comps": "Mark, 2DCanvasColor",
+    "comps": "Mark, 2D, Canvas, Color",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
-        "x": 581.4582562299438,
-        "y": 230,
-        "w": 4,
-        "h": 4
+        "x": 538.1569860407217,
+        "y": 279,
+        "w": 8,
+        "h": 4,
+        "time": null
       }
     }
   }
