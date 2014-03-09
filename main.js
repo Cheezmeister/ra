@@ -8,23 +8,47 @@ var EntMgr = {
         var type = typeof(e[key]);
         if (type !== typeof(Function)) {
           console.log(key + " is a " + type + ", expected a function");
+        } else {
+          e = (e[key])(attributes[key]);
+          if (e === undefined) {
+            console.log("uh oh...wat u do?");
+          }
         }
-        e = (e[key])(attributes[key]);
       }
     }
-    this._ents.push({ 
+    this._ents[e.getId()] = { 
       comps: comps, 
       attributes: attributes 
-    });
+    };
     return e;
   },
+
   ento: function(o) {
     return this.ent(o.comps, o.attributes);
+  },
+
+  updateEnt: function(id) {
+    console.log("attempting to update ents");
+    var craft = Crafty(id);
+    if (!craft) {
+      console.log("ent " + id + " was removed; do it yourself");
+      return false;
+    }
+    var e = this._ents[id];
+    if (!e) {
+      console.log("no ent with id " + id + " found");
+      return false;
+    }
+    for (var key in e.attributes.attr) {
+      e.attributes.attr[key] = craft.attr(key);
+    }
+    return true;
   },
 
   write: function() {
     return JSON.stringify(this._ents, null, 2);
   },
+
   parse: function(json) {
     var ents = JSON.parse(json);
     for (var i = 0; i < ents.length; ++i) {
@@ -85,6 +109,8 @@ var Game = {
     );
 
     Crafty.e('GlobalTriggers')
+      .bind('MapEntsUpdated', function(data) {
+      })
       .bind('Flash', function(data) {
         Crafty.background(data.color);
       })
@@ -100,8 +126,10 @@ var Game = {
 
     // Global keyboard events (dev)
     Crafty.e("Keyboard")
-      .bind('MapUpdated', function() {
-        updateMap();
+      .bind('MapEntsUpdated', function(data) {
+        if (EntMgr.updateEnt(data.id)) {
+          updateMap();
+        }
       })
       .bind('KeyDown', function() {
         if (this.isDown('M')) {
@@ -109,9 +137,9 @@ var Game = {
             color: 'rgb(240, 0, 240)',
             attr: { 
               x: G.player._x,
-              y: G.player._y,
+              y: G.player._y - 80,
               w: 4,
-              h: 40,
+              h: 120,
               time: new Date().getTime() - Game._lastTime
             }
           });

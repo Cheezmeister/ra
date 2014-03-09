@@ -45,8 +45,11 @@ var createComponents = function() {
       this.destroy();
     },
     init : function() {
-      this.requires('2D, Canvas, Keyboard, Color');
-      this.color('rgb(50, 0, 150)');
+      this.requires('2D, Mouse, Canvas, Keyboard, Color');
+      this.color('blue');
+      this.bind('Click', function() {
+        this._fire();
+      });
       this.bind('KeyDown', function() {
         if (this.isDown('SPACE')) {
           this._fire();
@@ -99,8 +102,9 @@ var createComponents = function() {
     },
     metronome: function() {
       this.onHit('Player', function() {
-        Game.setTime(this.attr('time'));
+        Game.setTime(this.attr("time"));
       });
+      return this;
     }
   });
 
@@ -117,11 +121,7 @@ var createComponents = function() {
 
         if (this.isDown('DELETE')) {
           this.destroy();
-          Crafty.trigger('Invalidate');
-          return;
-        }
-
-        if (this.isDown('W')) {
+        } else if (this.isDown('W')) {
           this.y = this._y - amt;
           this.h = this._h + amt;
         } else if (this.isDown('S')) {
@@ -143,6 +143,7 @@ var createComponents = function() {
           this.w = this._w + amt;
         } else return;
 
+        Crafty.trigger('MapEntsUpdated', {id: this[0]} );
         Crafty.trigger('Invalidate');
       });
     }

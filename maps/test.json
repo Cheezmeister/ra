@@ -13,7 +13,19 @@
   {
     "comps": "Ground, Adjustable, 2DCanvasColor",
     "attributes": {
-      "color": "rgb(0, 0, 0)",
+      "color": "black",
+      "attr": {
+        "x": 600,
+        "y": 1000,
+        "w": 1400,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Ground, Adjustable, 2DCanvasColor",
+    "attributes": {
+      "color": "black",
       "attr": {
         "x": 500,
         "y": 800,
@@ -62,12 +74,24 @@
   {
     "comps": "Wall, Adjustable, 2DCanvasColor, Collision",
     "attributes": {
-      "color": "rgb(128, 128, 0)",
+      "color": "blue",
       "attr": {
         "x": 1200,
         "y": 0,
         "w": 4,
-        "h": 1000
+        "h": 400
+      }
+    }
+  },
+  {
+    "comps": "Wall, Adjustable, 2DCanvasColor, Collision",
+    "attributes": {
+      "color": "rgb(128, 128, 0)",
+      "attr": {
+        "x": 2000,
+        "y": 600,
+        "w": 4,
+        "h": 400
       }
     }
   },
@@ -75,6 +99,7 @@
     "comps": "Trigger, Metronome, 2DCanvasColor",
     "attributes": {
       "color": "rgb(240, 0, 240)",
+      "metronome": {},
       "collect": {
         "trigger": "SpawnConfetti",
         "data": {
@@ -94,9 +119,8 @@
     }
   },
   {
-    "comps": "Trigger, 2DCanvasColor",
+    "comps": "Trigger, 2D",
     "attributes": {
-      "color": "rgb(140, 0, 240)",
       "collect": {
         "trigger": "destroy",
         "target": "41F156BE-A63B-11E3-A51E-ADAADB0F677B",
@@ -127,9 +151,8 @@
     }
   },
   {
-    "comps": "Trigger, 2DCanvasColor, MapEntity",
+    "comps": "Trigger, 2D, MapEntity",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
       "collect": {
         "trigger": "Flash",
         "data": {
@@ -168,6 +191,64 @@
         "w": 4,
         "h": 40,
         "time": null
+      }
+    }
+  },
+
+  {
+    "comps": "2D, Trigger",
+    "attributes": {
+      "collect": {
+        "trigger": "SpawnConfetti",
+        "data": {
+          "x": 800,
+          "y": 500,
+          "w": 4,
+          "h": 4
+        }
+      },
+      "attr": {
+        "x": 875,
+        "y": 340,
+        "w": 4,
+        "h": 80
+      }
+    }
+  },
+  {
+    "comps": "2D, Trigger",
+    "attributes": {
+      "collect": {
+        "trigger": "SpawnConfetti",
+        "data": {
+          "x": 800,
+          "y": 300,
+          "w": 4,
+          "h": 4
+        }
+      },
+      "attr": {
+        "x": 784,
+        "y": 340,
+        "w": 4,
+        "h": 80
+      }
+    }
+  },
+  {
+    "comps": "2D, Trigger",
+    "attributes": {
+      "collect": {
+        "trigger": "Flash",
+        "data": {
+          "color": "white"
+        }
+      },
+      "attr": {
+        "x": 685.3813046840769,
+        "y": 340,
+        "w": 4,
+        "h": 80
       }
     }
   }
