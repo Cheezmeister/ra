@@ -8,8 +8,9 @@ var EntMgr = {
         var type = typeof(e[key]);
         if (type !== typeof(Function)) {
           console.log(key + " is a " + type + ", expected a function");
+        } else {
+          e = (e[key])(attributes[key]);
         }
-        e = (e[key])(attributes[key]);
       }
     }
     this._ents.push({ 
@@ -109,9 +110,9 @@ var Game = {
             color: 'rgb(240, 0, 240)',
             attr: { 
               x: G.player._x,
-              y: G.player._y,
+              y: G.player._y - 80,
               w: 4,
-              h: 40,
+              h: 120,
               time: new Date().getTime() - Game._lastTime
             }
           });
