@@ -3,9 +3,21 @@
     "attributes": {
       "color": "rgb(0, 128, 128)",
       "attr": {
+        "x": 600,
+        "y": 400,
+        "w": 600,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Ground, Adjustable, 2DCanvasColor",
+    "attributes": {
+      "color": "rgb(0, 0, 0)",
+      "attr": {
         "x": 500,
-        "y": 300,
-        "w": 700,
+        "y": 800,
+        "w": 1400,
         "h": 4
       }
     }
@@ -99,16 +111,15 @@
     }
   },
   {
-    "comps": "2D, Canvas, Color, Trigger",
+    "comps": "2D, Trigger",
     "attributes": {
-      "color": "red",
       "collect": {
         "trigger": "destroy",
         "target": "847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
         "data": {}
       },
       "attr": {
-        "x": 832.6056233274321,
+        "x": 700,
         "y": 204,
         "w": 4,
         "h": 100
@@ -116,14 +127,46 @@
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color",
+    "comps": "Trigger, 2DCanvasColor, MapEntity",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "collect": {
+        "trigger": "Flash",
+        "data": {
+          "color": "black"
+        }
+      },
+      "attr": {
+        "x": 1079.4228634059982,
+        "y": 360,
+        "w": 4,
+        "h": 80,
+        "time": null
+      }
+    }
+  },
+  {
+    "comps": "Mark, 2D, Canvas, Color, MapEntity",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "attr": {
-        "x": 538.1569860407217,
-        "y": 279,
-        "w": 8,
-        "h": 4,
+        "x": 698.3716857408435,
+        "y": 780,
+        "w": 4,
+        "h": 40,
+        "time": null
+      }
+    }
+  },
+  {
+    "comps": "Mark, 2D, Canvas, Color, MapEntity",
+    "attributes": {
+      "color": "rgb(240, 0, 240)",
+      "attr": {
+        "x": 1079.4228634059982,
+        "y": 780,
+        "w": 4,
+        "h": 40,
         "time": null
       }
     }

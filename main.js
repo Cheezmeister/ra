@@ -85,6 +85,9 @@ var Game = {
     );
 
     Crafty.e('GlobalTriggers')
+      .bind('Flash', function(data) {
+        Crafty.background(data.color);
+      })
       .bind('SpawnConfetti', function(data) {
         var confetti = Crafty.e("Confetti")
           .attr({
@@ -102,7 +105,7 @@ var Game = {
       })
       .bind('KeyDown', function() {
         if (this.isDown('M')) {
-          EntMgr.ent("Mark, 2D, Canvas, Color", {
+          EntMgr.ent("Mark, 2D, Canvas, Color, MapEntity", {
             color: 'rgb(240, 0, 240)',
             attr: { 
               x: G.player._x,

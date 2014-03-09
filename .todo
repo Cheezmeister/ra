@@ -1,10 +1,15 @@
-How to for sure sync timings
+How to for sure sync timings (?)
+
+How to make it ass-easy for users to provide own copy of the track
 
 Metronome/timer/trigger system
-
+Make time actually work
+Easily toggleable debug rects
+Aesthetic layer
 Update EntMgr ents on resize, destroy etc.
 
 Components
+  * The Shake
   * The Drop
   * The Powerup (Superman)
   * The Flash
