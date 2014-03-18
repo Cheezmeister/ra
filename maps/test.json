@@ -251,5 +251,21 @@
         "h": 80
       }
     }
+  },
+  {
+    "comps": "2D, Trigger",
+    "attributes": {
+      "collect": {
+        "trigger": "destroy",
+        "target": "Confetti"
+      },
+      "attr": {
+        "x": 992.820323027554,
+        "y": 300,
+        "w": 4,
+        "h": 120,
+        "time": 1395120216804
+      }
+    }
   }
 ]

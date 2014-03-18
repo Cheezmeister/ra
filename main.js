@@ -24,6 +24,7 @@ var EntMgr = {
   },
 
   ento: function(o) {
+    if (!o) return null;
     return this.ent(o.comps, o.attributes);
   },
 
@@ -98,8 +99,8 @@ var Game = {
     }
 
     // Audio Track TODO bind to map
-    Crafty.audio.add('bgm', 'assets/audio/test.ogg');
-    Crafty.load(["assets/audio/test.ogg"], 
+    Crafty.audio.add('bgm', 'assets/audio/test.mp3');
+    Crafty.load(["assets/audio/test.mp3"], 
         function complete() {
         },
         function progress(e) {
@@ -124,8 +125,13 @@ var Game = {
         }).confetti();
       });
 
-    // Global keyboard events (dev)
     Crafty.e("Keyboard")
+      .bind('KeyDown', function() {
+        if (this.isDown('P')) {
+          Crafty.viewport.follow();
+        }
+      })
+      // Global keyboard events (dev)
       .bind('MapEntsUpdated', function(data) {
         if (EntMgr.updateEnt(data.id)) {
           updateMap();

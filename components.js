@@ -7,31 +7,12 @@ var createComponents = function() {
 
   var spawnPlayer = function(xPos, yPos, angle, vel) {
     //Player
-    var player = Crafty.e("Player, 2D, Canvas, Color, Collision, Gravity, Keyboard")
-      .color('rgb(0,0,255)')
-      .gravity('Ground')
-      .attr({ x: xPos, y: yPos, w: 20, h: 20,
-        dX: vel * Math.cos(angle),
-        _gy: -vel * Math.sin(angle)
-      })
-      .bind('EnterFrame', function () {
-        this.x += this.dX;
-      })
-      .bind('KeyDown', function() {
-        if (this.isDown('SPACE')) {
-          this._gy = -4;
-          this._falling = true;
-        } else if (this.isDown('R')) {
-          this.x = xPos;
-          this.y = yPos;
-        }
-      })
-      .onHit('Wall', function() {
-        this.dX = -this.dX;
-      })
-      .onHit('Ground', function () {
-        this._gy = 0;
-      });
+    var params = { 
+      x: xPos, y: yPos, w: 20, h: 20,
+      dX: vel * Math.cos(angle),
+      _gy: -vel * Math.sin(angle)
+    };
+    var player = Crafty.e("Player").start(params);
     Crafty.viewport.follow(player, 100, 100);
     G.player = player;
     Crafty.audio.play('bgm');
@@ -70,7 +51,7 @@ var createComponents = function() {
     },
     confetti: function() {
       var params = {
-        max: 50,
+        max: 20,
         gravity: {x: 0, y: 0.1},
         duration: 900
       };
@@ -91,6 +72,9 @@ var createComponents = function() {
       for (var i = 0; i < this._Particles.maxParticles; ++i) {
         this._Particles.addParticle();
       }
+      this.one('EndFrame', function() {
+        this.destroy();
+      });
       return this;
     }
   });
@@ -199,7 +183,41 @@ var createComponents = function() {
       if (this._selected === on) return;
       this._selected = ((on === 'toggle') ? !this._selected : on);
     }
+ 
+  });
 
+  Crafty.c('Player', {
+    init: function() {
+      this.requires("2D, Canvas, Color, Collision, Gravity, Keyboard");
+
+      this.color('rgb(0,0,255)')
+      .gravity('Ground')
+      .onHit('Wall', function() {
+        this.dX = -this.dX;
+      })
+      .onHit('Ground', function () {
+        this._gy = 0;
+      });
+    },
+
+    _playerStep: function() {
+      var mult = 1; //Crafty.timer.steptype() == "variable" ? params.dt : 1;
+      this.x += this.dX * mult;
+    },
+
+    start: function(params) {
+      this.attr(params);
+      this.bind('EnterFrame', this._playerStep);
+      this.bind('KeyDown', function() {
+        if (this.isDown('SPACE')) {
+          this._gy = -4;
+          this._falling = true;
+        } else if (this.isDown('H')) {
+          this.dX = 0;
+        }
+      });
+      return this;
+    }
   });
 
   Crafty.c('Mark', {
