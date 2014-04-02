@@ -154,7 +154,7 @@
     "comps": "Trigger, 2D, MapEntity",
     "attributes": {
       "collect": {
-        "trigger": "Flash",
+        "trigger": "Splash",
         "data": {
           "color": "black"
         }
@@ -163,34 +163,36 @@
         "x": 1079.4228634059982,
         "y": 360,
         "w": 4,
-        "h": 80,
-        "time": null
+        "h": 80
       }
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "2D, Trigger",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
       "attr": {
         "x": 698.3716857408435,
         "y": 780,
         "w": 4,
-        "h": 40,
-        "time": null
+        "h": 40
       }
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "2DCanvasColor, Trigger",
     "attributes": {
       "color": "rgb(240, 0, 240)",
+      "collect": {
+        "trigger": "Splash",
+        "data": {
+          "color": "green"
+        }
+      },
       "attr": {
         "x": 1079.4228634059982,
         "y": 780,
         "w": 4,
-        "h": 40,
-        "time": null
+        "h": 40
       }
     }
   },
@@ -239,7 +241,7 @@
     "comps": "2D, Trigger",
     "attributes": {
       "collect": {
-        "trigger": "Flash",
+        "trigger": "Splash",
         "data": {
           "color": "white"
         }

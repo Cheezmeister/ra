@@ -47,7 +47,7 @@ var createComponents = function() {
   // Confetti
   Crafty.c("Confetti", {
     init: function() {
-      this.requires('2DCanvasColor, Particles');
+      this.requires('2DCanvasColor, RaParticles');
     },
     confetti: function() {
       var params = {
@@ -69,9 +69,11 @@ var createComponents = function() {
         fastMode: true,
         gravity: { x: 0.0, y: 0.1}
       });
-      for (var i = 0; i < this._Particles.maxParticles; ++i) {
-        this._Particles.addParticle();
-      }
+
+      this.pulse();
+//       for (var i = 0; i < this._Particles.maxParticles; ++i) {
+//         this._Particles.addParticle();
+//       }
       this.one('EndFrame', function() {
         this.destroy();
       });

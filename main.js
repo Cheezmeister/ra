@@ -108,11 +108,17 @@ var Game = {
         function error(e) {
         }
     );
+    Crafty.audio.play('bgm');
+    Crafty.audio.pause('bgm');
 
     Crafty.e('GlobalTriggers')
       .bind('MapEntsUpdated', function(data) {
       })
       .bind('Flash', function(data) {
+        var old = Crafty.stage.elem.style.background;
+        Crafty.background(data.color);
+      })
+      .bind('Splash', function(data) {
         Crafty.background(data.color);
       })
       .bind('SpawnConfetti', function(data) {
