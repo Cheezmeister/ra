@@ -47,11 +47,11 @@ var createComponents = function() {
   // Confetti
   Crafty.c("Confetti", {
     init: function() {
-      this.requires('2DCanvasColor, Particles');
+      this.requires('2DCanvasColor, RaParticles');
     },
     confetti: function() {
       var params = {
-        max: 20,
+        max: 2,
         gravity: {x: 0, y: 0.1},
         duration: 900
       };

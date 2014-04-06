@@ -2,12 +2,12 @@ How to for sure sync timings (?)
 
 How to make it ass-easy for users to provide own copy of the track
 
-Metronome/timer/trigger system
-Make time actually work
 Easily toggleable debug rects
 Aesthetic layer
 Update EntMgr ents on resize, destroy etc.
+Global confetti
 
+Audio Track bind to map
 Jumping trails?
 
 Components
