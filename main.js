@@ -128,7 +128,7 @@ var Game = {
     Crafty.e("Keyboard")
       .bind('KeyDown', function() {
         if (this.isDown('P')) {
-          Crafty.viewport.follow();
+          Game.pseudopaused = !Game.pseudopaused;
         }
       })
       // Global keyboard events (dev)

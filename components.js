@@ -55,7 +55,7 @@ var createComponents = function() {
     },
     confetti: function() {
       var params = {
-        max: 2,
+        max: 40,
         gravity: {x: 0, y: 0.1},
         duration: 900
       };
@@ -205,6 +205,7 @@ var createComponents = function() {
     },
 
     _playerStep: function() {
+      if (Game.pseudopaused) return;
       var mult = 1; //Crafty.timer.steptype() == "variable" ? params.dt : 1;
       this.x += this.dX * mult;
     },

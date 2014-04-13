@@ -1,4 +1,6 @@
-[ {
+[
+  null,
+  {
     "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
     "attributes": {
       "color": "rgb(0, 128, 128)",
@@ -169,32 +171,41 @@
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "Adjustable, Trigger, Mark, 2D, Canvas, Color, MapEntity",
     "attributes": {
+      "collect": {
+        "trigger": "Flash",
+        "data": {
+          "color": "cyan"
+        }
+      },
       "color": "rgb(240, 0, 240)",
       "attr": {
-        "x": 698.3716857408435,
-        "y": 780,
-        "w": 4,
-        "h": 40,
-        "time": null
+        "x": 674.3716857408435,
+        "y": 652,
+        "w": 28,
+        "h": 168
       }
     }
   },
   {
-    "comps": "Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "Trigger, Mark, 2D, Canvas, Color, Adjustable, MapEntity",
     "attributes": {
+      "collect": {
+        "trigger": "Flash",
+        "data": {
+          "color": "green"
+        }
+      },
       "color": "rgb(240, 0, 240)",
       "attr": {
         "x": 1079.4228634059982,
         "y": 780,
         "w": 4,
-        "h": 40,
-        "time": null
+        "h": 40
       }
     }
   },
-
   {
     "comps": "2D, Trigger",
     "attributes": {
