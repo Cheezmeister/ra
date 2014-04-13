@@ -13,7 +13,11 @@ var createComponents = function() {
       _gy: -vel * Math.sin(angle)
     };
     var player = Crafty.e("Player").start(params);
-    Crafty.viewport.follow(player, 100, 100);
+
+    // Clamping every frame is expensive and we don't need it
+    Crafty.viewport.follow(player, 0, 0, 300, 150);
+    Crafty.viewport.clampToEntities = false;
+
     G.player = player;
     Crafty.audio.play('bgm');
   };
