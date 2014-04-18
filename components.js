@@ -13,7 +13,11 @@ var createComponents = function() {
       _gy: -vel * Math.sin(angle)
     };
     var player = Crafty.e("Player").start(params);
-    Crafty.viewport.follow(player, 100, 100);
+
+    // Clamping every frame is expensive and we don't need it
+    Crafty.viewport.follow(player, 0, 0, 300, 150);
+    Crafty.viewport.clampToEntities = false;
+
     G.player = player;
     Crafty.audio.play('bgm');
   };
@@ -51,7 +55,7 @@ var createComponents = function() {
     },
     confetti: function() {
       var params = {
-        max: 20,
+        max: 40,
         gravity: {x: 0, y: 0.1},
         duration: 900
       };
@@ -203,6 +207,7 @@ var createComponents = function() {
     },
 
     _playerStep: function() {
+      if (Game.pseudopaused) return;
       var mult = 1; //Crafty.timer.steptype() == "variable" ? params.dt : 1;
       this.x += this.dX * mult;
     },

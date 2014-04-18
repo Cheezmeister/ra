@@ -1,4 +1,5 @@
-[ {
+[
+  {
     "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
     "attributes": {
       "color": "rgb(0, 128, 128)",
@@ -6,6 +7,18 @@
         "x": 600,
         "y": 400,
         "w": 600,
+        "h": 4
+      }
+    }
+  },
+  {
+    "comps": "Ground, Adjustable, 2DCanvasColor",
+    "attributes": {
+      "color": "black",
+      "attr": {
+        "x": 500,
+        "y": 1200,
+        "w": 1400,
         "h": 4
       }
     }
@@ -154,7 +167,7 @@
     "comps": "Trigger, 2D, MapEntity",
     "attributes": {
       "collect": {
-        "trigger": "Splash",
+        "trigger": "Flash",
         "data": {
           "color": "black"
         }
@@ -163,31 +176,39 @@
         "x": 1079.4228634059982,
         "y": 360,
         "w": 4,
-        "h": 80
+        "h": 80,
+        "time": null
       }
     }
   },
   {
-    "comps": "2D, Trigger",
+    "comps": "Adjustable, Trigger, Mark, 2D, Canvas, Color, MapEntity",
     "attributes": {
-      "attr": {
-        "x": 698.3716857408435,
-        "y": 780,
-        "w": 4,
-        "h": 40
-      }
-    }
-  },
-  {
-    "comps": "2DCanvasColor, Trigger",
-    "attributes": {
-      "color": "rgb(240, 0, 240)",
       "collect": {
-        "trigger": "Splash",
+        "trigger": "Flash",
+        "data": {
+          "color": "cyan"
+        }
+      },
+      "color": "rgb(240, 0, 240)",
+      "attr": {
+        "x": 690.3716857408435,
+        "y": 652,
+        "w": 8,
+        "h": 168
+      }
+    }
+  },
+  {
+    "comps": "Trigger, Mark, 2D, Canvas, Color, Adjustable, MapEntity",
+    "attributes": {
+      "collect": {
+        "trigger": "Flash",
         "data": {
           "color": "green"
         }
       },
+      "color": "rgb(240, 0, 240)",
       "attr": {
         "x": 1079.4228634059982,
         "y": 780,
@@ -196,7 +217,6 @@
       }
     }
   },
-
   {
     "comps": "2D, Trigger",
     "attributes": {
@@ -240,8 +260,9 @@
   {
     "comps": "2D, Trigger",
     "attributes": {
+      "color": "rgb(240, 0, 240)",
       "collect": {
-        "trigger": "Splash",
+        "trigger": "Flash",
         "data": {
           "color": "white"
         }
@@ -255,18 +276,21 @@
     }
   },
   {
-    "comps": "2D, Trigger",
+    "comps": "Trigger, Mark, 2D, Canvas, Color, MapEntity",
     "attributes": {
+      "color": "rgb(240, 0, 240)",
       "collect": {
-        "trigger": "destroy",
-        "target": "Confetti"
+        "trigger": "Flash",
+        "data": {
+          "color": "grey"
+        }
       },
       "attr": {
-        "x": 992.820323027554,
-        "y": 300,
+        "x": 1196.336292916898,
+        "y": 700,
         "w": 4,
         "h": 120,
-        "time": 1395120216804
+        "time": 1397406606898
       }
     }
   }
