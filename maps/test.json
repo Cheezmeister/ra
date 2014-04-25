@@ -260,7 +260,6 @@
   {
     "comps": "2D, Trigger",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
       "collect": {
         "trigger": "Flash",
         "data": {

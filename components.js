@@ -227,6 +227,7 @@ var createComponents = function() {
 
   Crafty.c('Mark', {
     init: function() {
+      this.requires('MapEntity');
       if (Game.debug) {
         this.requires('Adjustable, 2DCanvasColor');
       }
