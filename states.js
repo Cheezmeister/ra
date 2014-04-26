@@ -31,7 +31,7 @@ var States = {
 
       // Typically I'm not concerned with the play experience 
       // when iterating, just that things aren't horrifically broken
-      if (Game.devMode) {
+      if (Game.smoketesting) {
         Crafty.audio.toggleMute();
       }
 
@@ -49,8 +49,13 @@ var States = {
           }
       );
 
+      // Event handlers for global triggers. These might fit better
+      // somewhere else, but will leave them here for now.
       Crafty.e('GlobalTriggers')
         .bind('MapEntsUpdated', function(data) {
+          if (EntMgr.updateEnt(data.id)) {
+            updateMap();
+          }
         })
         .bind('Flash', function(data) {
           Crafty.background(data.color);
@@ -65,20 +70,12 @@ var States = {
           }).confetti();
         });
 
+      // Global keyboard events (dev)
       Crafty.e("Keyboard")
         .bind('KeyDown', function() {
-          if (this.isDown('P')) {
+          if        (this.isDown('P')) {
             Game.pseudopaused = !Game.pseudopaused;
-          }
-        })
-        // Global keyboard events (dev)
-        .bind('MapEntsUpdated', function(data) {
-          if (EntMgr.updateEnt(data.id)) {
-            updateMap();
-          }
-        })
-        .bind('KeyDown', function() {
-          if (this.isDown('M')) {
+          } else if (this.isDown('M')) {
             EntMgr.ent("Mark", {
               color: 'rgb(240, 0, 240)',
               attr: { 
@@ -95,12 +92,10 @@ var States = {
           }
         });
 
+      // Init map textbox
       updateMap();
 
-      Game._timer = Crafty.e('2D, DOM, Text')
-        .attr({x: 100, y: 100})
-        .text(0);
-
+      // Player spawns from here on spacebar or click
       var cannon = Crafty.e("SpawnCannon")
         .cannon(30, 5)
         .attr({x: 300, y: 150, w: 40, h: 40});
@@ -110,7 +105,7 @@ var States = {
       Crafty.viewport.init(Game.width, Game.height);
       Crafty.viewport.follow(cannon, 100, 100);
 
-      if (Game.devMode) {
+      if (Game.smoketesting) {
         cannon._fire();
       }
     }

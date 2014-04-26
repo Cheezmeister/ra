@@ -1,14 +1,13 @@
 var Game = {
 
   debug: true,
-  devMode: false,
+  smoketesting: false,
 
   width: 1200,
   height: 500,
 
   setTime: function(time) {
     this._lastTime = time;
-    this._timer.text(time);
   },
 
   start: function() {
@@ -18,13 +17,13 @@ var Game = {
     createComponents();
 
     // TODO can I control the event loop without dissecting crafty?
-    var state = Game.devMode ? States.game : States.menu;
+    var state = Game.smoketesting ? States.game : States.menu;
     state.start();
   }
 };
 
 
-if (Game.devMode) {
+if (Game.smoketesting) {
   window.setTimeout(function() {
     window.location.reload();
   }, 5000);
