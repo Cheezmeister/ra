@@ -6,6 +6,9 @@ var States = {
   },
 
   game: {
+    end: function () {
+      Crafty('*').destroy();
+    },
     start: function() {
 
       // Update the text box with transient map json
@@ -38,7 +41,6 @@ var States = {
       // Audio Track 
       // TODO bind to map
       // TODO really need to assess browser codec support and deal with that
-      Crafty.audio.add('bgm', 'assets/audio/test.mp3');
       Crafty.load(["assets/audio/test.mp3"], 
           function complete() {
           },
@@ -48,6 +50,7 @@ var States = {
             alert( 'Oh noez! ' + e.src + ' failed to load!' );
           }
       );
+      Crafty.audio.add('bgm', 'assets/audio/test.mp3');
 
       // Event handlers for global triggers. These might fit better
       // somewhere else, but will leave them here for now.
@@ -98,7 +101,7 @@ var States = {
       // Player spawns from here on spacebar or click
       var cannon = Crafty.e("SpawnCannon")
         .cannon(30, 5)
-        .attr({x: 300, y: 150, w: 40, h: 40});
+        .attr({x: 320, y: 150, w: 40, h: 40});
 
       // Camera
       // TODO variable browser width
