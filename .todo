@@ -1,20 +1,21 @@
-How to for sure sync timings (?)
-How to make it ass-easy for users to provide own copy of the track
+(f) Feature (q) Questions (r) Refactor (b) Bug (t) Task
 
-Easily toggleable debug rects
-Aesthetic layer
-Update EntMgr ents on resize, destroy etc.
-Global confetti
-
-Audio Track bind to map
-Jumping trails?
-Zap attack
-  right/bottom attrs
-Death - fade - aspload
+f Aesthetic layer
+f Audio Track bind to map
+f Death - fade - aspload
+f Easily toggleable debug rects
+f Jumping trails?
+q How to for sure sync timings (?)
+q How to make it ass-easy for users to provide own copy of the track
+r Global confetti
+r right/bottom attrs
+t Send particle crap upstream
+b WTF Gravity phasing
 
 Components
   * The Shake
   * The Drop
   * The Powerup (Superman)
   * The Flash
+  * The Splash
   * Enemy (collide = die)

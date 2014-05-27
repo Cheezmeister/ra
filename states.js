@@ -32,7 +32,7 @@ var States = {
       // This may be overkill if releasing one map/track at a time
       loadMap('test');
 
-      // Typically I'm not concerned with the play experience 
+      // Typically I'm not concerned with the musical experience 
       // when iterating, just that things aren't horrifically broken
       if (Game.smoketesting) {
         Crafty.audio.toggleMute();
@@ -73,6 +73,11 @@ var States = {
           }).confetti();
         });
 
+      var markColors = [
+        'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'
+      ];
+      var markIndex = 0;
+
       // Global keyboard events (dev)
       Crafty.e("Keyboard")
         .bind('KeyDown', function() {
@@ -80,7 +85,7 @@ var States = {
             Game.pseudopaused = !Game.pseudopaused;
           } else if (this.isDown('M')) {
             EntMgr.ent("Mark", {
-              color: 'rgb(240, 0, 240)',
+              color: markColors[markIndex++ % markColors.length],
               attr: { 
                 x: G.player._x,
                 y: G.player._y - 80,

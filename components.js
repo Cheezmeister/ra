@@ -32,7 +32,7 @@ var createComponents = function() {
     },
     init : function() {
       this.requires('2D, Mouse, Canvas, Keyboard, Color');
-      this.color('blue');
+      this.color('green');
       this.bind('Click', function() {
         this._fire();
       });
@@ -52,7 +52,7 @@ var createComponents = function() {
   // Confetti
   Crafty.c("Confetti", {
     init: function() {
-      this.requires('2DCanvasColor, RaParticles');
+      this.requires('2DCanvasColor, Particles');
     },
     confetti: function() {
       var params = {
@@ -60,6 +60,7 @@ var createComponents = function() {
         gravity: {x: 0, y: 0.1},
         duration: 900
       };
+
       this.particles({
         maxParticles: params.max,
         // Produce only the particles forced below
@@ -69,16 +70,13 @@ var createComponents = function() {
         speedRandom: 10,
         lifeSpan: params.duration + 1,
         lifeSpanRandom: 200,
-        startColour: [250, 50, 0, 10],
+        startColour: [250, 150, 0, 10],
         endColour: [50, 250, 250, 100],
         fastMode: true,
         gravity: { x: 0.0, y: 0.1}
       });
 
       this.pulse();
-//       for (var i = 0; i < this._Particles.maxParticles; ++i) {
-//         this._Particles.addParticle();
-//       }
       this.one('EndFrame', function() {
         this.destroy();
       });
@@ -204,6 +202,9 @@ var createComponents = function() {
       .onHit('Wall', function() {
         this.dX = -this.dX;
       })
+      .onHit('Ceiling', function() {
+        this._gy = 0;
+      })
       .onHit('Ground', function () {
         this._gy = 0;
       });
@@ -249,7 +250,7 @@ var createComponents = function() {
 
         // Hold position (for editing)
         } else if (this.isDown('E')) {
-          this.dX = 0;
+          this.dX = (this.dX ? 0 : params.dX);
         }
       });
       return this;
@@ -319,6 +320,15 @@ var createComponents = function() {
       }
       this.attr({x: x, y: y, w: w, h: h});
 
+    }
+  });
+
+  Crafty.c('Shootable', {
+    init: function() {
+      this.requires('Collision');
+      this.onHit('Laser', function() {
+        this.destroy();
+      });
     }
   });
 
