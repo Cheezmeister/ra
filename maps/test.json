@@ -1,5 +1,4 @@
 [
-  null,
   {
     "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
     "attributes": {
@@ -183,7 +182,7 @@
     }
   },
   {
-    "comps": "Adjustable, Trigger, Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "Adjustable, Trigger, 2D, Canvas, Color, MapEntity",
     "attributes": {
       "collect": {
         "trigger": "Flash",
@@ -201,7 +200,7 @@
     }
   },
   {
-    "comps": "Trigger, Mark, 2D, Canvas, Color, Adjustable, MapEntity",
+    "comps": "Trigger, 2D, Canvas, Color, Adjustable, MapEntity",
     "attributes": {
       "collect": {
         "trigger": "Flash",
@@ -276,7 +275,7 @@
     }
   },
   {
-    "comps": "Trigger, Mark, 2D, Canvas, Color, MapEntity",
+    "comps": "Trigger, 2D, Canvas, Color, MapEntity",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "collect": {
@@ -358,5 +357,105 @@
         "time": 1401074295888
       }
     }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "red",
+      "attr": {
+        "x": 536.5063509461106,
+        "y": 955.2,
+        "time": 1401488879924
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "orange",
+      "attr": {
+        "x": 722.7018127597657,
+        "y": 1100,
+        "time": 1401488880775
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "yellow",
+      "attr": {
+        "x": 904.5671475544987,
+        "y": 1100,
+        "time": 1401488881626
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "green",
+      "attr": {
+        "x": 1090.7626093681538,
+        "y": 1100,
+        "time": 1401488882480
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "blue",
+      "attr": {
+        "x": 1272.6279441628867,
+        "y": 1100,
+        "time": 1401488883329
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "indigo",
+      "attr": {
+        "x": 1445.8330249197752,
+        "y": 1100,
+        "time": 1401488884134
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "violet",
+      "attr": {
+        "x": 1640.6887407712748,
+        "y": 1100,
+        "time": 1401488885032
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "red",
+      "attr": {
+        "x": 1740.2816622064856,
+        "y": 1100,
+        "time": 1401488885487
+      }
+    }
+  },
+  {
+    "comps": "Blob",
+    "attributes": {
+      "color": "orange",
+      "attr": {
+        "x": 1835.5444566227743,
+        "y": 1100,
+        "time": 1401488885935
+      }
+    }
   }
 ]
+

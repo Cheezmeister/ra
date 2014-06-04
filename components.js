@@ -58,12 +58,12 @@ var createComponents = function() {
       var params = {
         max: 40,
         gravity: {x: 0, y: 0.1},
-        duration: 900
+        duration: 200
       };
 
       this.particles({
         maxParticles: params.max,
-        // Produce only the particles forced below
+        autoEmit: false, // Produce only the particles forced below
         duration: params.duration,
         size: 10,
         sizeRandom: 9,
@@ -71,15 +71,11 @@ var createComponents = function() {
         lifeSpan: params.duration + 1,
         lifeSpanRandom: 200,
         startColour: [250, 150, 0, 10],
-        endColour: [50, 250, 250, 100],
+        endColour: [90, 50, 50, 100],
         fastMode: true,
         gravity: { x: 0.0, y: 0.1}
       });
 
-      this.pulse();
-      this.one('EndFrame', function() {
-        this.destroy();
-      });
       return this;
     }
   });
@@ -142,6 +138,10 @@ var createComponents = function() {
   Crafty.c("Trigger", { 
     init: function() {
       this.requires('Collision');
+      if (Game.debug) {
+        this.requires('2DCanvasColor');
+        this.color('white');
+      }
     },
 
     target: function(params) {
@@ -205,6 +205,9 @@ var createComponents = function() {
       .onHit('Ceiling', function() {
         this._gy = 0;
       })
+      .onHit('Enemy', function () {
+        this.die();
+      })
       .onHit('Ground', function () {
         this._gy = 0;
       });
@@ -223,6 +226,10 @@ var createComponents = function() {
         .color('red')
         .duration(1000)
         .fire(this.x, this.y, dir);
+    },
+
+    die: function () {
+      alert("oh noez, you died!");
     },
 
     // Parameters
@@ -320,6 +327,24 @@ var createComponents = function() {
       }
       this.attr({x: x, y: y, w: w, h: h});
 
+    }
+  });
+
+  Crafty.c('Blob',  {
+    init: function () {
+      // TODO make it look more blobby
+      this.requires('Enemy, 2DCanvasColor, Shootable');
+      this.attr({w: 80, h: 4});
+      this.bind('Destroy', function () {
+        Game.score++;
+      });
+    }
+  });
+
+
+  Crafty.c('Enemy',  {
+    init: function () {
+            // TODO
     }
   });
 

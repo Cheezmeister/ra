@@ -64,13 +64,21 @@ var States = {
           Crafty.background(data.color);
         })
         .bind('SpawnConfetti', function(data) {
-          var confetti = Crafty.e("Confetti")
-            .attr({
+          var confetti = Crafty("Confetti");
+          if (!confetti || !confetti.length) {
+            confetti = Crafty.e("Confetti");
+            confetti.confetti();
+          }
+
+          confetti.pulse({
+            position: {
               x: data.x,
               y: data.y,
               w: data.w,
               h: data.h
-          }).confetti();
+            }
+          });
+          
         });
 
       var markColors = [
@@ -170,7 +178,7 @@ var EntMgr = {
   },
 
   write: function() {
-    return JSON.stringify(this._ents, null, 2);
+    return JSON.stringify(this._ents, null, 2) + '\n';
   },
 
   parse: function(json) {

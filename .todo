@@ -7,10 +7,10 @@ f Easily toggleable debug rects
 f Jumping trails?
 q How to for sure sync timings (?)
 q How to make it ass-easy for users to provide own copy of the track
-r Global confetti
 r right/bottom attrs
 t Send particle crap upstream
 b WTF Gravity phasing
+b Zombie particles; pulse should clear current?
 
 Components
   * The Shake
