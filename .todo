@@ -12,6 +12,7 @@ t Send particle crap upstream
 t Mirror on github
 b WTF Gravity phasing
 b Zombie particles; pulse should clear current?
+b Collision check player center for triggers etc.
 
 Components
   * The Shake

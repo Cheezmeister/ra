@@ -1,6 +1,6 @@
 var Game = {
 
-  debug: true,
+  debug: false,
   smoketesting: false,
 
   width: 1200,

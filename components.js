@@ -15,9 +15,7 @@ var createComponents = function() {
     };
     var player = Crafty.e("Player").start(params);
 
-    // Clamping every frame is expensive and we don't need it
     Crafty.viewport.follow(player, 0, 0, 300, 150);
-    Crafty.viewport.clampToEntities = false;
 
     G.player = player;
     Crafty.audio.play('bgm');
