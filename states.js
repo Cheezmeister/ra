@@ -112,14 +112,17 @@ var States = {
       updateMap();
 
       // Player spawns from here on spacebar or click
-      var cannon = Crafty.e("SpawnCannon")
-        .cannon(30, 5)
-        .attr({x: 320, y: 150, w: 40, h: 40});
+      var cannon = Crafty("SpawnCannon");
+      if (!cannon) console.log("Map must contain a SpawnCannon");
 
-      // Camera
-      // TODO variable browser width
+      // Camera params. Start by centering on the cannon,
+      // then we'll switch to the player once it spawns.
+      // Disable clamping as it is expensive and we don't need it,
+      // certainly not every frame.
       Crafty.viewport.init(Game.width, Game.height);
-      Crafty.viewport.follow(cannon, 100, 100);
+      Crafty.viewport.follow(cannon, 0, 0, 300, 150);
+      Crafty.viewport.clampToEntities = false;
+      // TODO variable browser width
 
       if (Game.smoketesting) {
         cannon._fire();

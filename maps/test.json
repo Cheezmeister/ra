@@ -1,5 +1,18 @@
 [
   {
+    "comps": "SpawnCannon",
+    "attributes": {
+      "angle": 30,
+      "vel": 4.3301270189221932338186158537646809173570131345259515,
+      "attr": {
+        "x": 320,
+        "y": 150,
+        "w": 40,
+        "h": 40
+      }
+    }
+  },
+  {
     "comps": "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A",
     "attributes": {
       "color": "rgb(0, 128, 128)",
@@ -127,7 +140,7 @@
         "x": 369.2820323027554,
         "y": 137.2,
         "w": 4,
-        "h": 4
+        "h": 40
       }
     }
   },

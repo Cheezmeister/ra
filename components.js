@@ -6,12 +6,12 @@ var createComponents = function() {
   Crafty.alias('Wall', 'Solid');
   Crafty.alias('Ground', 'Solid');
 
-  var spawnPlayer = function(xPos, yPos, angle, vel) {
+  var spawnPlayer = function(xPos, yPos, angle, xVel) {
     //Player
     var params = { 
       x: xPos, y: yPos, w: 20, h: 20,
-      dX: vel * Math.cos(angle),
-      _gy: -vel * Math.sin(angle)
+      dX: xVel,
+      _gy: -xVel * Math.tan(angle)
     };
     var player = Crafty.e("Player").start(params);
 
@@ -27,7 +27,7 @@ var createComponents = function() {
   Crafty.c("SpawnCannon", {
 
     _fire: function() {
-      spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonvel);
+      spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonHVel);
       this.destroy();
     },
     init : function() {
@@ -42,9 +42,12 @@ var createComponents = function() {
         }
       });
     },
-    cannon: function(angle, vel) {
-      this._cannonAngle = angle * Math.PI / 180;
-      this._cannonvel = vel;
+    angle: function (a) {
+      this._cannonAngle = a * Math.PI / 180;
+      return this;
+    },
+    vel: function (hVel) {
+      this._cannonHVel = hVel;
       return this;
     }
   });
@@ -140,6 +143,7 @@ var createComponents = function() {
       this.requires('Collision');
       if (Game.debug) {
         this.requires('2DCanvasColor');
+        this.requires('Adjustable');
         this.color('white');
       }
     },
@@ -199,6 +203,7 @@ var createComponents = function() {
 
       this.color('rgb(0,0,255)')
       .gravity('Ground')
+      .gravityConst(0.4)
       .onHit('Wall', function() {
         this.dX = -this.dX;
       })
@@ -242,17 +247,14 @@ var createComponents = function() {
 
         // Jump
         if (this.isDown('SPACE')) {
-          this._gy = -4;
+          this._gy = -6;
           this._falling = true;
 
         // Zap attack
-        } else if (this.isDown('H')) {
-          this._zap('left');
         } else if (this.isDown('J')) {
+          this._zap('left');
           this._zap('down');
-        } else if (this.isDown('K')) {
           this._zap('up');
-        } else if (this.isDown('L')) {
           this._zap('right');
 
         // Hold position (for editing)
@@ -359,7 +361,6 @@ var createComponents = function() {
 
   Crafty.c('Mark', {
     init: function() {
-      this.requires('MapEntity');
       if (Game.debug) {
         this.requires('Adjustable, 2DCanvasColor');
       }
