@@ -150,8 +150,9 @@ var createComponents = function() {
       return this;
     },
 
+    // TODO factor into Collectible component
     collect: function(params) {
-      this.onHit('Player', function() {
+      this.onHit('Player', function(hitdata) {
         if (params.target) {
           var func = this[params.trigger];
           var target = Crafty(params.target);
@@ -160,6 +161,8 @@ var createComponents = function() {
             (target[params.trigger])(params.data);
           }
           
+        } else if (params.givepowerup) {
+          G.player.givePowerup(params.givepowerup);
         } else {
           Crafty.trigger(params.trigger, params.data);
         }
@@ -216,6 +219,12 @@ var createComponents = function() {
       });
     },
 
+    // Powerups given by collectibles
+    givePowerup: function(comp) {
+      this.addComponent(comp);
+      this.color('purple');
+    },
+
     // Update
     _playerStep: function() {
       if (Game.pseudopaused) return;
@@ -249,7 +258,7 @@ var createComponents = function() {
           this._falling = true;
 
         // Zap attack
-        } else if (this.isDown('J')) {
+        } else if (this.isDown('J') && this.has('Zapper')) {
           this._zap('left');
           this._zap('down');
           this._zap('up');

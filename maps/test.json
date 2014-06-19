@@ -123,7 +123,7 @@
     }
   },
   {
-    "comps": "Trigger, Metronome, 2DCanvasColor",
+    "comps": "Trigger, Metronome",
     "attributes": {
       "color": "rgb(240, 0, 240)",
       "metronome": {},
@@ -188,15 +188,15 @@
       },
       "attr": {
         "x": 1076.4228634059982,
-        "y": 424,
-        "w": 7,
+        "y": 454,
+        "w": 2,
         "h": 144,
         "time": null
       }
     }
   },
   {
-    "comps": "Adjustable, Trigger, 2D, Canvas, Color, MapEntity",
+    "comps": "Adjustable, Trigger, MapEntity",
     "attributes": {
       "collect": {
         "trigger": "Flash",
@@ -204,7 +204,6 @@
           "color": "cyan"
         }
       },
-      "color": "rgb(240, 0, 240)",
       "attr": {
         "x": 690.3716857408435,
         "y": 652,
@@ -214,7 +213,7 @@
     }
   },
   {
-    "comps": "Trigger, 2D, Canvas, Color, Adjustable, MapEntity",
+    "comps": "Trigger, Adjustable, MapEntity",
     "attributes": {
       "collect": {
         "trigger": "Flash",
@@ -222,7 +221,6 @@
           "color": "green"
         }
       },
-      "color": "rgb(240, 0, 240)",
       "attr": {
         "x": 1079.4228634059982,
         "y": 780,
@@ -289,9 +287,8 @@
     }
   },
   {
-    "comps": "Trigger, 2D, Canvas, Color, MapEntity",
+    "comps": "Trigger, MapEntity",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
       "collect": {
         "trigger": "Flash",
         "data": {
@@ -299,7 +296,7 @@
         }
       },
       "attr": {
-        "x": 1196.336292916898,
+        "x": 1176.336292916898,
         "y": 700,
         "w": 4,
         "h": 120,
@@ -323,7 +320,7 @@
   {
     "comps": "2DCanvasColor, Adjustable, Ground, Ceiling, Wall",
     "attributes": {
-      "color": "orange",
+      "color": "black",
       "attr": {
         "x": 1715.9515351875634,
         "y": 765.4000000000001,
@@ -336,7 +333,7 @@
   {
     "comps": "2DCanvasColor, Adjustable, Ground, Ceiling, Wall",
     "attributes": {
-      "color": "yellow",
+      "color": "black",
       "attr": {
         "x": 1795.214329603852,
         "y": 728.6000000000001,
@@ -347,14 +344,17 @@
     }
   },
   {
-    "comps": "2DCanvasColor, Adjustable, Powerup",
+    "comps": "2DCanvasColor, Trigger, Adjustable, Collectible",
     "attributes": {
-      "color": "green",
+      "color": "purple",
+      "collect": {
+        "givepowerup": "Zapper"
+      },
       "attr": {
         "x": 1942.1469970012186,
-        "y": 553.2000000000002,
+        "y": 673.2000000000002,
         "w": 16,
-        "h": 125,
+        "h": 25,
         "time": 1401074061545
       }
     }
