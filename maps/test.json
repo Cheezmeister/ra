@@ -360,14 +360,15 @@
     }
   },
   {
-    "comps": "2DCanvasColor, Ground, Shootable",
+    "comps": "2DCanvasColor, Ground, Text, Shootable",
     "attributes": {
-      "color": "blue",
+      "color": "white",
+      "text": "shoot me!",
       "attr": {
         "x": 1880.4771240201408,
         "y": 800,
         "w": 101,
-        "h": 11,
+        "h": 16,
         "time": 1401074295888
       }
     }
