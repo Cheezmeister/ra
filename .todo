@@ -10,7 +10,7 @@ q How to make it ass-easy for users to provide own copy of the track
 r right/bottom attrs
 r use boilerplate layout
 t Send particle crap upstream
-t Mirror on github
+t Slap some licence on
 b WTF Gravity phasing
 b Zombie particles; pulse should clear current?
 b Collision check player center for triggers etc.

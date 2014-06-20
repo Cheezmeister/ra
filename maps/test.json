@@ -125,7 +125,6 @@
   {
     "comps": "Trigger, Metronome",
     "attributes": {
-      "color": "rgb(240, 0, 240)",
       "metronome": {},
       "collect": {
         "trigger": "SpawnConfetti",
@@ -344,12 +343,10 @@
     }
   },
   {
-    "comps": "2DCanvasColor, Trigger, Adjustable, Collectible",
+    "comps": "2DCanvasColor, Collectible",
     "attributes": {
       "color": "purple",
-      "collect": {
-        "givepowerup": "Zapper"
-      },
+      "powerup": "Zapper",
       "attr": {
         "x": 1942.1469970012186,
         "y": 673.2000000000002,

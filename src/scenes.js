@@ -1,11 +1,76 @@
+// Entity manager, really just handles persisting ents
+var EntMgr = {
+  _ents : [],
+
+  ent: function(comps, attributes) {
+    var e = Crafty.e(comps);
+    for (var key in attributes) {
+      if (attributes.hasOwnProperty(key)) {
+        var type = typeof(e[key]);
+        if (type !== typeof(Function)) {
+          console.log(key + " is a " + type + ", expected a function");
+        } else {
+          e = (e[key])(attributes[key]);
+          if (e === undefined) {
+            console.log("You forgot to return this for one of (" + comps + ")");
+          }
+        }
+      }
+    }
+    this._ents[e.getId()] = { 
+      comps: comps, 
+      attributes: attributes 
+    };
+    console.log("Successfully added ent (" + comps + ")");
+    return e;
+  },
+
+  ento: function(o) {
+    if (!o) return null;
+    return this.ent(o.comps, o.attributes);
+  },
+
+  updateEnt: function(id) {
+    console.log("attempting to update ents");
+    var craft = Crafty(id);
+    if (!craft) {
+      console.log("ent " + id + " was removed; do it yourself");
+      return false;
+    }
+    var e = this._ents[id];
+    if (!e) {
+      console.log("no ent with id " + id + " found");
+      return false;
+    }
+    for (var key in e.attributes.attr) {
+      e.attributes.attr[key] = craft.attr(key);
+    }
+    return true;
+  },
+
+  write: function(serializer) {
+    var c = serializer || this.serializer || Serializers.json;
+    return c.dump(this._ents);
+  },
+
+  parse: function(text, serializer) {
+    var c = serializer || this.serializer || Serializers.json;
+    var ents = c.parse(text);
+    for (var i = 0; i < ents.length; ++i) {
+      this.ento(ents[i]);
+    }
+  }
+};
+
+// Game states, or "scenes" as Crafty calls them. Menu is rather bare at the moment :)
 var States = {
   menu: {
     start: function() {
-      States.game.start();
+      Crafty.enterScene('gameplay');
     }
   },
 
-  game: {
+  gameplay: {
     end: function () {
       Crafty('*').destroy();
     },
@@ -91,6 +156,8 @@ var States = {
         .bind('KeyDown', function() {
           if        (this.isDown('P')) {
             Game.pseudopaused = !Game.pseudopaused;
+          } else if (this.isDown('D')) {
+            Game.debug = !Game.debug;
           } else if (this.isDown('M')) {
             EntMgr.ent("Mark", {
               color: markColors[markIndex++ % markColors.length],
@@ -131,69 +198,9 @@ var States = {
   }
 };
 
-
-var EntMgr = {
-  _ents : [],
-
-  ent: function(comps, attributes) {
-    var e = Crafty.e(comps);
-    for (var key in attributes) {
-      if (attributes.hasOwnProperty(key)) {
-        var type = typeof(e[key]);
-        if (type !== typeof(Function)) {
-          console.log(key + " is a " + type + ", expected a function");
-        } else {
-          e = (e[key])(attributes[key]);
-          if (e === undefined) {
-            console.log("uh oh...wat u do?");
-          }
-        }
-      }
-    }
-    this._ents[e.getId()] = { 
-      comps: comps, 
-      attributes: attributes 
-    };
-    return e;
-  },
-
-  ento: function(o) {
-    if (!o) return null;
-    return this.ent(o.comps, o.attributes);
-  },
-
-  updateEnt: function(id) {
-    console.log("attempting to update ents");
-    var craft = Crafty(id);
-    if (!craft) {
-      console.log("ent " + id + " was removed; do it yourself");
-      return false;
-    }
-    var e = this._ents[id];
-    if (!e) {
-      console.log("no ent with id " + id + " found");
-      return false;
-    }
-    for (var key in e.attributes.attr) {
-      e.attributes.attr[key] = craft.attr(key);
-    }
-    return true;
-  },
-
-  write: function() {
-    return JSON.stringify(this._ents, null, 2) + '\n';
-  },
-
-  parse: function(json) {
-    var ents = JSON.parse(json);
-    for (var i = 0; i < ents.length; ++i) {
-      this.ento(ents[i]);
-    }
+for (var s in States) {
+  if (States.hasOwnProperty(s)) {
+    Crafty.scene(s, States[s].start, States[s].end);
   }
-};
-
-
-
-
-
+}
 
