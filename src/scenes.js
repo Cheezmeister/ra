@@ -21,7 +21,7 @@ var EntMgr = {
       comps: comps, 
       attributes: attributes 
     };
-    console.log("Successfully added ent (" + comps + ")");
+    // console.log("Successfully added ent (" + comps + ")");
     return e;
   },
 
@@ -49,12 +49,12 @@ var EntMgr = {
   },
 
   write: function(serializer) {
-    var c = serializer || this.serializer || Serializers.json;
+    var c = serializer || this.serializer || Serializers.yaml;
     return c.dump(this._ents);
   },
 
   parse: function(text, serializer) {
-    var c = serializer || this.serializer || Serializers.json;
+    var c = serializer || this.serializer || Serializers.yaml;
     var ents = c.parse(text);
     for (var i = 0; i < ents.length; ++i) {
       this.ento(ents[i]);
@@ -90,8 +90,9 @@ var States = {
           return req.responseText;
         };
 
-        var json = loadFile('maps/' + file + '.json');
-        EntMgr.parse(json);
+        var fmt = 'yaml';
+        var data = loadFile('maps/' + file + '.' + 'yml');
+        EntMgr.parse(data, Serializers[fmt]);
       };
 
       // This may be overkill if releasing one map/track at a time

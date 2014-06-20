@@ -1,0 +1,316 @@
+---
+- comps: SpawnCannon
+  attributes:
+    angle: 30
+    vel: 4.330127018922194
+    attr:
+      x: 320
+      "y": 150
+      w: 40
+      h: 40
+- comps: "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 847C1E94-A68E-11E3-B07B-2B3F9A125B5A"
+  attributes:
+    color: "rgb(0, 128, 128)"
+    attr:
+      x: 600
+      "y": 464
+      w: 600
+      h: 4
+- comps: "Ground, Adjustable, 2DCanvasColor"
+  attributes:
+    color: black
+    attr:
+      x: 500
+      "y": 1200
+      w: 1400
+      h: 4
+- comps: "Ground, Adjustable, 2DCanvasColor"
+  attributes:
+    color: black
+    attr:
+      x: 600
+      "y": 1000
+      w: 1400
+      h: 4
+- comps: "Ground, Adjustable, 2DCanvasColor"
+  attributes:
+    color: black
+    attr:
+      x: 500
+      "y": 800
+      w: 1380
+      h: 4
+- comps: "Ground, Adjustable, 2DCanvasColor, TriggerTarget, 41F156BE-A63B-11E3-A51E-ADAADB0F677B"
+  attributes:
+    color: "rgb(0, 128, 255)"
+    setName: 41F156BE-A63B-11E3-A51E-ADAADB0F677B
+    attr:
+      x: 800
+      "y": 200
+      w: 400
+      h: 4
+- comps: "Ground, Adjustable, 2DCanvasColor"
+  attributes:
+    color: "rgb(0, 128, 0)"
+    attr:
+      x: 0
+      "y": 200
+      w: 800
+      h: 4
+- comps: "Wall, Adjustable, 2DCanvasColor, Collision"
+  attributes:
+    color: "rgb(128, 128, 0)"
+    attr:
+      x: 504
+      "y": 200
+      w: 4
+      h: 1000
+- comps: "Wall, Adjustable, 2DCanvasColor, Collision"
+  attributes:
+    color: blue
+    attr:
+      x: 1197
+      "y": 0
+      w: 7
+      h: 464
+- comps: "Wall, Adjustable, 2DCanvasColor, Collision"
+  attributes:
+    color: "rgb(128, 128, 0)"
+    attr:
+      x: 2000
+      "y": 600
+      w: 4
+      h: 400
+- comps: "Trigger, Metronome"
+  attributes:
+    metronome: {}
+    collect:
+      trigger: SpawnConfetti
+      data:
+        x: 800
+        "y": 100
+        w: 4
+        h: 4
+    attr:
+      time: 0
+      x: 369.2820323027554
+      "y": 137.2
+      w: 4
+      h: 40
+- comps: "Trigger, 2D"
+  attributes:
+    collect:
+      trigger: destroy
+      target: 41F156BE-A63B-11E3-A51E-ADAADB0F677B
+      data: {}
+    attr:
+      x: 940.8587988004874
+      "y": 100
+      w: 4
+      h: 100
+- comps: "2D, Trigger"
+  attributes:
+    collect:
+      trigger: destroy
+      target: 847C1E94-A68E-11E3-B07B-2B3F9A125B5A
+      data: {}
+    attr:
+      x: 700
+      "y": 204
+      w: 4
+      h: 100
+- comps: "Trigger, 2D, MapEntity"
+  attributes:
+    collect:
+      trigger: Flash
+      data:
+        color: black
+    attr:
+      x: 1076.4228634059982
+      "y": 454
+      w: 2
+      h: 144
+      time: null
+- comps: "Adjustable, Trigger, MapEntity"
+  attributes:
+    collect:
+      trigger: Flash
+      data:
+        color: cyan
+    attr:
+      x: 690.3716857408435
+      "y": 652
+      w: 8
+      h: 168
+- comps: "Trigger, Adjustable, MapEntity"
+  attributes:
+    collect:
+      trigger: Flash
+      data:
+        color: green
+    attr:
+      x: 1079.4228634059982
+      "y": 780
+      w: 4
+      h: 40
+- comps: "2D, Trigger"
+  attributes:
+    collect:
+      trigger: SpawnConfetti
+      data:
+        x: 800
+        "y": 500
+        w: 4
+        h: 4
+    attr:
+      x: 872
+      "y": 404
+      w: 7
+      h: 144
+- comps: "2D, Trigger"
+  attributes:
+    collect:
+      trigger: SpawnConfetti
+      data:
+        x: 800
+        "y": 300
+        w: 4
+        h: 4
+    attr:
+      x: 781
+      "y": 404
+      w: 7
+      h: 144
+- comps: "2D, Trigger"
+  attributes:
+    collect:
+      trigger: Flash
+      data:
+        color: white
+    attr:
+      x: 682.3813046840769
+      "y": 404
+      w: 7
+      h: 144
+- comps: "Trigger, MapEntity"
+  attributes:
+    collect:
+      trigger: Flash
+      data:
+        color: grey
+    attr:
+      x: 1176.336292916898
+      "y": 700
+      w: 4
+      h: 120
+      time: 1397406606898
+- comps: "2DCanvasColor, Trigger"
+  attributes:
+    color: red
+    attr:
+      x: 1662.3393758658858
+      "y": 689.2
+      w: 4
+      h: 120
+      time: 1401074060359
+- comps: "2DCanvasColor, Adjustable, Ground, Ceiling, Wall"
+  attributes:
+    color: black
+    attr:
+      x: 1715.9515351875634
+      "y": 765.4000000000001
+      w: 80
+      h: 35
+      time: 1401074060695
+- comps: "2DCanvasColor, Adjustable, Ground, Ceiling, Wall"
+  attributes:
+    color: black
+    attr:
+      x: 1795.214329603852
+      "y": 728.6000000000001
+      w: 84
+      h: 36
+      time: 1401074061146
+- comps: "2DCanvasColor, Collectible"
+  attributes:
+    color: purple
+    powerup: Zapper
+    attr:
+      x: 1942.1469970012186
+      "y": 673.2000000000002
+      w: 16
+      h: 25
+      time: 1401074061545
+- comps: "2DCanvasColor, Ground, Text, Shootable"
+  attributes:
+    color: white
+    text: "shoot me!"
+    attr:
+      x: 1880.4771240201408
+      "y": 800
+      w: 101
+      h: 16
+      time: 1401074295888
+- comps: "Blob"
+  attributes:
+    color: red
+    attr:
+      x: 536.5063509461106
+      "y": 955.2
+      time: 1401488879924
+- comps: "Blob"
+  attributes:
+    color: orange
+    attr:
+      x: 722.7018127597657
+      "y": 1100
+      time: 1401488880775
+- comps: "Blob"
+  attributes:
+    color: yellow
+    attr:
+      x: 904.5671475544987
+      "y": 1100
+      time: 1401488881626
+- comps: "Blob"
+  attributes:
+    color: green
+    attr:
+      x: 1090.7626093681538
+      "y": 1100
+      time: 1401488882480
+- comps: "Blob"
+  attributes:
+    color: blue
+    attr:
+      x: 1272.6279441628867
+      "y": 1100
+      time: 1401488883329
+- comps: "Blob"
+  attributes:
+    color: indigo
+    attr:
+      x: 1445.8330249197752
+      "y": 1100
+      time: 1401488884134
+- comps: "Blob"
+  attributes:
+    color: violet
+    attr:
+      x: 1640.6887407712748
+      "y": 1100
+      time: 1401488885032
+- comps: "Blob"
+  attributes:
+    color: red
+    attr:
+      x: 1740.2816622064856
+      "y": 1100
+      time: 1401488885487
+- comps: "Blob"
+  attributes:
+    color: orange
+    attr:
+      x: 1835.5444566227743
+      "y": 1100
+      time: 1401488885935
