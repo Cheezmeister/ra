@@ -15,7 +15,12 @@ Crafty.c('Player', {
     ));
 
     this.gravity('Ground').gravityConst(0.4)
-    .onHit('Wall', function() {
+    .onHit('Wall', function(hitdata) {
+      var hd = hitdata[0];
+      if (hd && hd.obj.has('Bashable') && this.has('Juggernaut')) {
+        hd.obj.destroy();
+        return;
+      }
       this.dX = -this.dX;
     })
     .onHit('Ceiling', function() {
@@ -31,8 +36,12 @@ Crafty.c('Player', {
 
   // Powerups given by collectibles
   givePowerup: function(comp) {
+    var colormap = {
+      Zapper: 'purple',
+      Juggernaut: 'orange'
+    };
     this.addComponent(comp);
-    this.color('purple');
+    this.color(colormap[comp]);
   },
 
   // Update

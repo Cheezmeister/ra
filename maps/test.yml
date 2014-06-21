@@ -195,9 +195,9 @@
       w: 4
       h: 120
       time: 1397406606898
-- comps: "2DCanvasColor, Trigger"
+- comps: "Wall, Bashable"
   attributes:
-    color: red
+    color: '#ff8844'
     attr:
       x: 1662.3393758658858
       "y": 689.2
@@ -294,3 +294,13 @@
       x: 1835.5444566227743
       "y": 1100
       time: 1401488885935
+- comps: "Collectible, 2DCanvasColor"
+  attributes:
+    color: orange
+    powerup: Juggernaut
+    attr:
+      x: 1341.57984944672
+      "y": 780
+      w: 16
+      h: 16
+      time: 1403390099280
