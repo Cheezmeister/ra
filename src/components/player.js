@@ -68,11 +68,15 @@ Crafty.c('Player', {
         this._falling = true;
 
       // Zap attack
-      } else if (this.isDown('J') && this.has('Zapper')) {
-        this._zap('left');
-        this._zap('down');
-        this._zap('up');
-        this._zap('right');
+      } else if (this.isDown('J')) {
+        if (this.has('Zapper')) {
+          this._zap('left');
+          this._zap('down');
+          this._zap('up');
+          this._zap('right');
+        } else {
+          this._zap(this.dX > 0 ? 'right' : 'left');
+        }
 
       // Hold position (for editing)
       } else if (this.isDown('E')) {
