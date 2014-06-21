@@ -4,9 +4,17 @@ Crafty.c('Player', {
   init: function() {
     this.requires("2D, Canvas, Color, Collision, Gravity, Keyboard");
 
-    this.color('rgb(0,0,255)')
-    .gravity('Ground')
-    .gravityConst(0.4)
+    // Da ba dee, da ba die
+    this.color('rgb(0,0,255)');
+
+    this.collision(new Crafty.polygon(
+      [this._w / 2, this._h / 2], 
+      [this._w / 2 + 1, this._h / 2], 
+      [this._w / 2 + 1, this._h / 2 + 1], 
+      [this._w / 2, this._h / 2 + 1] 
+    ));
+
+    this.gravity('Ground').gravityConst(0.4)
     .onHit('Wall', function() {
       this.dX = -this.dX;
     })

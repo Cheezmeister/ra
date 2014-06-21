@@ -163,8 +163,8 @@ var States = {
             EntMgr.ent("Mark", {
               color: markColors[markIndex++ % markColors.length],
               attr: { 
-                x: G.player._x,
-                y: G.player._y - 80,
+                x: Game.player._x,
+                y: Game.player._y - 80,
                 w: 4,
                 h: 120,
                 time: new Date().getTime() - Game._lastTime

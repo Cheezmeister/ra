@@ -1,19 +1,21 @@
 (f) Feature (q) Questions (r) Refactor (b) Bug (t) Task
 
+b Collision check player center for triggers etc.
+b WTF Gravity phasing
+b Zombie particles; pulse should clear current?
 f Aesthetic layer
 f Audio Track bind to map
 f Death - fade - aspload
 f Easily toggleable debug rects
 f Jumping trails?
+f save map button
+g yaml y key reserved word 
 q How to for sure sync timings (?)
 q How to make it ass-easy for users to provide own copy of the track
+r automate crafty patch/merge
 r right/bottom attrs
-r use boilerplate layout
 t Send particle crap upstream
 t Slap some licence on
-b WTF Gravity phasing
-b Zombie particles; pulse should clear current?
-b Collision check player center for triggers etc.
 
 Components
   * The Shake

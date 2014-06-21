@@ -2,7 +2,10 @@
 // Adjustable
 Crafty.c("Adjustable", {
   init: function() {
-    this.requires('Selectable, Keyboard');
+    this.requires('Selectable, Draggable, Keyboard');
+    this.bind('StopDrag', function () {
+      this.triggerUpdate();
+    });
     this.bind('KeyDown', function() {
       if (!this._selected) return;
 
@@ -34,9 +37,13 @@ Crafty.c("Adjustable", {
         this.w = this._w + amt;
       } else return;
 
-      Crafty.trigger('MapEntsUpdated', {id: this[0]} );
-      Crafty.trigger('Invalidate');
+      this.triggerUpdate();
     });
+  },
+
+  triggerUpdate: function () {
+    Crafty.trigger('MapEntsUpdated', {id: this[0]} );
+    Crafty.trigger('Invalidate');
   }
 });
 
