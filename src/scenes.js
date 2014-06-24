@@ -107,16 +107,21 @@ var States = {
       // Audio Track 
       // TODO bind to map
       // TODO really need to assess browser codec support and deal with that
-      Crafty.load(["assets/audio/test.mp3"], 
+      var assets = {
+        audio: {
+          bgm: ["test.mp3", "test.ogg", "test.flac"]
+        }
+      };
+      Crafty.load(assets, 
           function complete() {
+            console.log('Assets loaded properly');
           },
           function progress(e) {
           },
           function error(e) {
-            alert( 'Oh noez! ' + e.src + ' failed to load!' );
+            console.log( 'Oh noez! ' + e.src + ' failed to load!' );
           }
       );
-      Crafty.audio.add('bgm', 'assets/audio/test.mp3');
 
       // Event handlers for global triggers. These might fit better
       // somewhere else, but will leave them here for now.

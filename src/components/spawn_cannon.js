@@ -10,7 +10,11 @@ var spawnPlayer = function(xPos, yPos, angle, xVel) {
   Crafty.viewport.follow(player, 0, 0, 300, 150);
 
   Game.player = player;
-  Crafty.audio.play('bgm');
+
+  // This works inconsistently on Chrome. Seems like a race condition.
+  // Crafty.audio.play('bgm');
+  // But this works fine
+  Crafty.audio.sounds.bgm.obj.play();
 };
 
 // SpawnCannon
