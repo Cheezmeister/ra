@@ -4,6 +4,18 @@ Crafty.c('Player', {
   init: function() {
     this.requires("2D, Canvas, Color, Collision, Gravity, Keyboard");
 
+    // TODO should go in Crafty or crafty_utils
+    Object.defineProperties(this, {
+      center: {
+        get: function() {
+          return {
+            x: this._x + this._w / 2,
+            y: this._y + this._h / 2
+          }
+        }
+      }
+    });
+
     // Da ba dee, da ba die
     this.color('rgb(0,0,255)');
 
@@ -14,10 +26,12 @@ Crafty.c('Player', {
       [this._w / 2, this._h / 2 + 1] 
     ));
 
+    this.powerups = Crafty.e('Powerups');
+
     this.gravity('Ground').gravityConst(0.4)
     .onHit('Wall', function(hitdata) {
       var hd = hitdata[0];
-      if (hd && hd.obj.has('Bashable') && this.has('Juggernaut')) {
+      if (hd && hd.obj.has('Bashable') && this.powerups.has('Juggernaut')) {
         hd.obj.destroy();
         return;
       }
@@ -40,7 +54,7 @@ Crafty.c('Player', {
       Zapper: 'purple',
       Juggernaut: 'orange'
     };
-    this.addComponent(comp);
+    this.powerups.addComponent(comp);
     this.color(colormap[comp]);
   },
 
@@ -56,7 +70,7 @@ Crafty.c('Player', {
     Crafty.e('2DCanvasColor, Laser')
       .color('red')
       .duration(1000)
-      .fire(this.x, this.y, dir);
+      .fire(this.center.x, this.center.y, dir);
   },
 
   die: function () {
@@ -78,7 +92,7 @@ Crafty.c('Player', {
 
       // Zap attack
       } else if (this.isDown('J')) {
-        if (this.has('Zapper')) {
+        if (this.powerups.has('Zapper')) {
           this._zap('left');
           this._zap('down');
           this._zap('up');
