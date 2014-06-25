@@ -197,7 +197,7 @@
       time: 1397406606898
 - comps: "Wall, Bashable"
   attributes:
-    color: '#ff8844'
+    color: "#ff8844"
     attr:
       x: 1662.3393758658858
       "y": 689.2

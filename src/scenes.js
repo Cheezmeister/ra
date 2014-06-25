@@ -78,7 +78,11 @@ var States = {
 
       // Update the text box with transient map json
       var updateMap = function() {
-        document.getElementById('map').innerHTML = (EntMgr.write());
+        var text = EntMgr.write();
+        var uri = 'data:text/plain,' + encodeURIComponent(text);
+        document.getElementById('map').innerHTML = text;
+        document.getElementById('save').setAttribute('href', uri);
+        document.getElementById('save').setAttribute('download', 'test.yml');
       };
 
       // Load a map from file
