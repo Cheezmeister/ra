@@ -11,20 +11,13 @@ Crafty.c('Player', {
           return {
             x: this._x + this._w / 2,
             y: this._y + this._h / 2
-          }
+          };
         }
       }
     });
 
     // Da ba dee, da ba die
     this.color('rgb(0,0,255)');
-
-    this.collision(new Crafty.polygon(
-      [this._w / 2, this._h / 2], 
-      [this._w / 2 + 1, this._h / 2], 
-      [this._w / 2 + 1, this._h / 2 + 1], 
-      [this._w / 2, this._h / 2 + 1] 
-    ));
 
     this.powerups = Crafty.e('Powerups');
 

@@ -84,7 +84,7 @@
         h: 4
     attr:
       time: 0
-      x: 369.2820323027554
+      x: 377.2820323027554
       "y": 137.2
       w: 4
       h: 40
@@ -117,10 +117,10 @@
       data:
         color: black
     attr:
-      x: 1076.4228634059982
-      "y": 454
+      x: 1051.4228634059982
+      "y": 455
       w: 2
-      h: 144
+      h: 143
       time: null
 - comps: "Adjustable, Trigger, MapEntity"
   attributes:
@@ -220,7 +220,7 @@
       w: 61
       h: 3
       time: 1401074061146
-- comps: "2DCanvasColor, Collectible"
+- comps: "2DCanvasColor, Adjustable, Collectible"
   attributes:
     color: purple
     powerup: Zapper
@@ -299,8 +299,22 @@
     color: orange
     powerup: Juggernaut
     attr:
-      x: 1341.57984944672
-      "y": 780
+      x: 1450.1631519386974
+      "y": 782
       w: 16
       h: 16
-      time: 1403390099280
+      time: 1403998391583
+- comps: "Ground, 2DCanvasColor"
+  attributes:
+    attr:
+      x: 2000
+      "y": 4052.399999999996
+      w: 4000
+      h: 120
+      time: 1403998999975
+- comps: Blob
+  attributes:
+    attr:
+      x: 1305.7945491468417
+      "y": 980
+      time: 1404013255896
