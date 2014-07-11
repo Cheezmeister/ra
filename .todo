@@ -7,12 +7,10 @@ f Aesthetic layer
 f Audio Track bind to map
 f Death - fade - aspload
 f Jumping trails?
-g yaml y key reserved word 
 q How to for sure sync timings (?)
 q How to make it ass-easy for users to provide own copy of the track
 r automate crafty patch/merge
 r right/bottom attrs
-t Shoot from center
 t Send particle crap upstream
 t Slap some licence on
 
@@ -22,4 +20,3 @@ Components
   * The Powerup (Superman)
   * The Flash
   * The Splash
-  * Enemy (collide = die)

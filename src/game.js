@@ -20,6 +20,7 @@ window.Game = {
     var elements = [ "src/components/_misc",
       "src/components/player.js"           ,
       "src/components/adjustable.js"       ,
+      "src/components/parallax.js"         ,
       "src/components/confetti.js"         ,
       "src/components/laser.js"            ,
       "src/components/metronome.js"        ,

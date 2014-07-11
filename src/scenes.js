@@ -87,20 +87,38 @@ var States = {
 
       // Load a map from file
       var loadMap = function(file) {
-        var loadFile = function(file) {
+        var loadFile = function(file, onBegin, onComplete) {
           var req = new XMLHttpRequest();
-          req.open('GET', file, false);
+          req.onreadystatechange = function(a) {
+            if (req.readyState == 3) {
+              onBegin(a);
+            } else if (req.readyState == 4) {
+              onComplete(req.responseText);
+            }
+          };
+          req.open('GET', file, true);
           req.send(null);
-          return req.responseText;
+          return ;
         };
 
         var fmt = 'yaml';
-        var data = loadFile('maps/' + file + '.' + 'yml');
-        EntMgr.parse(data, Serializers[fmt]);
+        loadFile('maps/' + file + '.' + 'yml', 
+          function started(arg) {
+          },
+          function ended(data) {
+            EntMgr.parse(data, Serializers[fmt]);
+          } 
+        );
       };
 
       // This may be overkill if releasing one map/track at a time
       loadMap('test');
+
+      Crafty.e('Parallax, Canvas')
+        .image('assets/images/taco-icon.png', 'repeat')
+        .attr({x: 0, y: 0, w: 5000, h: 10000})
+        .layer(-0.2);
+
 
       // Typically I'm not concerned with the musical experience 
       // when iterating, just that things aren't horrifically broken

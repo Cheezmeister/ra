@@ -209,7 +209,7 @@
     attr:
       x: 1739.9515351875634
       "y": 765.4000000000001
-      w: 56
+      w: 36
       h: 3
       time: 1401074060695
 - comps: "Adjustable, Ground, Ceiling, Wall"
@@ -217,7 +217,7 @@
     attr:
       x: 1818.214329603852
       "y": 728.6000000000001
-      w: 61
+      w: 36
       h: 3
       time: 1401074061146
 - comps: "2DCanvasColor, Adjustable, Collectible"
@@ -225,10 +225,10 @@
     color: purple
     powerup: Zapper
     attr:
-      x: 1942.1469970012186
-      "y": 673.2000000000002
-      w: 16
-      h: 25
+      x: 1884.1469970012186
+      "y": 693.2000000000002
+      w: 14
+      h: 13
       time: 1401074061545
 - comps: "Ground, Text, Shootable"
   attributes:
