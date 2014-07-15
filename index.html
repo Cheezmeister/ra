@@ -3,6 +3,20 @@
     <title>RA</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script data-main="main" src="vendor/require.js"></script>
+    <style>
+      span.key {
+        padding: 0px 4px 0px 4px;
+        background: #f8f8cc;
+        border: 1px solid #ddddbb;
+        border-radius: 4px;
+      }
+      span.swatch.purple {
+        background: purple;
+      }
+      span.swatch.orange {
+        background: orange;
+      }
+    </style>
   </head>
 
 
@@ -10,9 +24,18 @@
     <p>
     Track: <a href="http://ocremix.org/remix/OCR02382">"Quicksander" OC ReMix</a>
     </p>
+    <h2>Keys</h2>
     <p>
-    Keys: Spacebar to start/jump; J to shoot (with purple powerup)
+    <span class="key">Spacebar</span> to start/jump <br>
+    <span class="key">J</span> to shoot (with purple powerup)<br>
     </p>
+
+    <h2>Powerups</h2>
+    <p>
+    <span class="swatch orange">Orange</span>: Smash through orange stuff!<br>
+    <span class="swatch purple">Purple</span>: 4-way shot!<br>
+    </p>
+
     <div id="cr-stage">
       <div tabindex=1 style="position: absolute; z-index: 1; transform-style: preserve-3d;"> </div>
     </div>

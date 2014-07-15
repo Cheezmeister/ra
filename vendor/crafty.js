@@ -12750,7 +12750,6 @@ Crafty.extend({
                 else if (cx - vx < -plx) 
                   delta = cx - vx + plx;
                 if (delta) {
-                  console.log("cx: " + cx + ', vx: ' + vx + ', plx: ' + plx + ', delta: ' + delta);
                   Crafty.viewport.scroll('_x', -(Crafty.viewport._x + delta));
                 }
 

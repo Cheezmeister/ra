@@ -1,15 +1,14 @@
 
 var spawnPlayer = function(xPos, yPos, angle, xVel) {
 
-  var player = Crafty.e("Player").start({ 
+  var player = Game.player = Crafty.e("Player").start({ 
     x: xPos, y: yPos, w: 20, h: 20,
     dX: xVel,
     _gy: -xVel * Math.tan(angle)
   });
 
-  Crafty.viewport.follow(player, 0, 0, 300, 150);
-
-  Game.player = player;
+  Crafty.viewport.follow(player, 0, 0, 0, 0);
+  Crafty.viewport.clampToEntities = false;
 
   // This works inconsistently on Chrome. Seems like a race condition.
   // Crafty.audio.play('bgm');
@@ -21,6 +20,7 @@ var spawnPlayer = function(xPos, yPos, angle, xVel) {
 Crafty.c("SpawnCannon", {
 
   _fire: function() {
+    console.log("here" + Crafty.viewport.clampToEntities);
     spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonHVel);
     this.destroy();
   },

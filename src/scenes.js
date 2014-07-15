@@ -86,7 +86,7 @@ var States = {
       };
 
       // Load a map from file
-      var loadMap = function(file) {
+      var loadMap = function(file, onComplete) {
         var loadFile = function(file, onBegin, onComplete) {
           var req = new XMLHttpRequest();
           req.onreadystatechange = function(a) {
@@ -107,17 +107,15 @@ var States = {
           },
           function ended(data) {
             EntMgr.parse(data, Serializers[fmt]);
+            if (onComplete) onComplete();
           } 
         );
       };
 
-      // This may be overkill if releasing one map/track at a time
-      loadMap('test');
-
       Crafty.e('Parallax, Canvas')
-        .image('assets/images/taco-icon.png', 'repeat')
-        .attr({x: 0, y: 0, w: 5000, h: 10000})
-        .layer(-0.2);
+        .attr({x: 0, y: 0, w: 1920, h: 1200})
+        .image('assets/images/squiggle.png', 'repeat')
+        .layer(-2);
 
 
       // Typically I'm not concerned with the musical experience 
@@ -139,6 +137,7 @@ var States = {
             console.log('Assets loaded properly');
           },
           function progress(e) {
+            console.log('.');
           },
           function error(e) {
             console.log( 'Oh noez! ' + e.src + ' failed to load!' );
@@ -198,30 +197,40 @@ var States = {
               }
             });
             updateMap();
-          } else if (this.isDown('V')) {
-            Crafty.audio.toggleMute();
+          } else if (this.isDown('PLUS')) {
+            // Seriously guys?
+            // Crafty.audio.toggleMute();
+            var o = Crafty.audio.sounds.bgm.obj;
+            o.volume = Math.min(o.volume + 0.1, 1);
+          } else if (this.isDown('MINUS')) {
+            console.log('lowering');
+            var o = Crafty.audio.sounds.bgm.obj;
+            o.volume = Math.max(o.volume - 0.1, 0);
           }
         });
 
       // Init map textbox
       updateMap();
 
-      // Player spawns from here on spacebar or click
-      var cannon = Crafty("SpawnCannon");
-      if (!cannon) console.log("Map must contain a SpawnCannon");
-
-      // Camera params. Start by centering on the cannon,
-      // then we'll switch to the player once it spawns.
-      // Disable clamping as it is expensive and we don't need it,
-      // certainly not every frame.
-      Crafty.viewport.init(Game.width, Game.height);
-      Crafty.viewport.follow(cannon, 0, 0, 300, 150);
-      Crafty.viewport.clampToEntities = false;
+      // Camera params (Clamping is mad expensive and we don't need it)
       // TODO variable browser width
+      Crafty.viewport.init(Game.width, Game.height);
+      Crafty.viewport.clampToEntities = false;
 
-      if (Game.smoketesting) {
-        cannon._fire();
-      }
+      // This may be overkill if releasing one map/track at a time
+      loadMap('test', function follow() {
+        // Player spawns from here on spacebar or click
+        var cannon = Crafty("SpawnCannon")[0];
+        if (!cannon) { 
+          console.log("Map must contain a SpawnCannon");
+          return;
+        }
+
+        Crafty.viewport.follow(cannon, 0, 0, 300, 150);
+        if (Game.smoketesting) {
+          cannon._fire();
+        }
+      });
     }
   }
 };
