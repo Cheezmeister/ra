@@ -125,8 +125,6 @@ var States = {
       }
 
       // Audio Track 
-      // TODO bind to map
-      // TODO really need to assess browser codec support and deal with that
       var assets = {
         audio: {
           bgm: ["test.mp3", "test.ogg", "test.flac"]
@@ -162,14 +160,17 @@ var States = {
             confetti.confetti();
           }
 
-          confetti.pulse({
+          var options = {
             position: {
               x: data.x,
               y: data.y,
               w: data.w,
               h: data.h
             }
-          });
+          };
+
+          // Gen half of available pool at the location specified
+          confetti.pulse(options, 0.5); 
           
         });
 
@@ -220,7 +221,7 @@ var States = {
       // This may be overkill if releasing one map/track at a time
       loadMap('test', function follow() {
         // Player spawns from here on spacebar or click
-        var cannon = Crafty("SpawnCannon")[0];
+        var cannon = Crafty("SpawnCannon");
         if (!cannon) { 
           console.log("Map must contain a SpawnCannon");
           return;

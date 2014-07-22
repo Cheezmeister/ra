@@ -1,12 +1,10 @@
 (f) Feature (q) Questions (r) Refactor (b) Bug (t) Task
 
-b Collision check player center for triggers etc.
+b Ghost laser
 b Zombie particles; pulse should clear current?
 b Fix camera following w/ play
-f Aesthetic layer
-f Audio Track bind to map
 f Death - fade - aspload
-f Jumping trails?
+b Parallaxing silliness
 q How to for sure sync timings (?)
 q How to make it ass-easy for users to provide own copy of the track
 r automate crafty patch/merge

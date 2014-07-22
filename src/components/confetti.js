@@ -6,9 +6,9 @@ Crafty.c("Confetti", {
   },
   confetti: function() {
     var params = {
-      max: 40,
+      max: 80,
       gravity: {x: 0, y: 0.1},
-      duration: 200
+      duration: 100
     };
 
     this.particles({
@@ -19,7 +19,7 @@ Crafty.c("Confetti", {
       sizeRandom: 9,
       speedRandom: 10,
       lifeSpan: params.duration + 1,
-      lifeSpanRandom: 200,
+      lifeSpanRandom: 100,
       startColour: [250, 150, 0, 10],
       endColour: [90, 50, 50, 100],
       fastMode: true,

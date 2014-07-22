@@ -10175,14 +10175,17 @@ Crafty.c("Particles", {
      * @sign public this .pulse(Object options)
      * @param options - Optional map of options to override emitter settings
      */
-    pulse: function(options) {
+    pulse: function(options, fraction) {
         if (!options) options = {};
+        if (!fraction || fraction <= 0 || fraction > 1) {
+          fraction = 1.0;
+        }
 
         //Create temp config by merging given options into emitter settings.
         for (var key in this._Particles) {
             if (typeof options[key] == 'undefined') options[key] = this._Particles[key];
         }
-        for (var i = 0; i < this._Particles.maxParticles; ++i) {
+        for (var i = 0; i < this._Particles.maxParticles * fraction; ++i) {
             if (!this._Particles.addParticle(options)) break;
         }
     },

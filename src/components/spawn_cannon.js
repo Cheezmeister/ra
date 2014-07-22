@@ -1,7 +1,8 @@
 
 var spawnPlayer = function(xPos, yPos, angle, xVel) {
 
-  var player = Game.player = Crafty.e("Player").start({ 
+  var player = Game.player = Crafty.s("Player");
+  player.start({ 
     x: xPos, y: yPos, w: 20, h: 20,
     dX: xVel,
     _gy: -xVel * Math.tan(angle)
@@ -20,12 +21,20 @@ var spawnPlayer = function(xPos, yPos, angle, xVel) {
 Crafty.c("SpawnCannon", {
 
   _fire: function() {
-    console.log("here" + Crafty.viewport.clampToEntities);
     spawnPlayer(this._x, this._y, this._cannonAngle, this._cannonHVel);
-    this.destroy();
+    this.unbind('KeyDown');
+    this.unbind('Click');
+    this.bind('KeyDown', function() {
+      if (this.isDown('R')) {
+        Crafty.audio.sounds.bgm.obj.currentTime = 0;
+        Crafty.audio.sounds.bgm.obj.pause();
+        this._fire();
+      }
+    });
   },
   init : function() {
-    this.requires('2D, Mouse, Canvas, Keyboard, Color');
+    this.requires('2D, Mouse, Fourway, Canvas, Keyboard, Color');
+    this.fourway(5);
     this.color('green');
     this.bind('Click', function() {
       this._fire();

@@ -149,8 +149,8 @@
     collect:
       trigger: SpawnConfetti
       data:
-        x: 800
-        "y": 500
+        x: 600
+        "y": 300
         w: 4
         h: 4
     attr:
@@ -163,8 +163,8 @@
     collect:
       trigger: SpawnConfetti
       data:
-        x: 800
-        "y": 300
+        x: 600
+        "y": 100
         w: 4
         h: 4
     attr:

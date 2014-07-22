@@ -3,6 +3,11 @@ Crafty.c('Player', {
   // Initialization
   init: function() {
     this.requires("2D, Canvas, Color, Collision, Gravity, Keyboard");
+    //
+    // TODO stuff keybindings into a map for readibility/customization
+    this.bind('KeyDown', this._handleInput);
+
+    this.bind('EnterFrame', this._playerStep);
 
     // TODO should go in Crafty or crafty_utils
     Object.defineProperties(this, {
@@ -18,11 +23,16 @@ Crafty.c('Player', {
 
     // Da ba dee, da ba die
     this.color('rgb(0,0,255)');
-
     this.powerups = Crafty.e('Powerups');
 
-    this.gravity('Ground').gravityConst(0.4)
-    .onHit('Wall', function(hitdata) {
+    this.onHit('Ceiling', function() {
+      this._gy = 0;
+    })
+    this.gravity('Ground').gravityConst(0.4).bind('hit', function () {
+      this._gy = 0;
+    });
+
+    this.onHit('Wall', function(hitdata) {
       var hd = hitdata[0];
       if (hd && hd.obj.has('Bashable') && this.powerups.has('Juggernaut')) {
         hd.obj.destroy();
@@ -30,15 +40,10 @@ Crafty.c('Player', {
       }
       this.dX = -this.dX;
     })
-    .onHit('Ceiling', function() {
-      this._gy = 0;
-    })
     .onHit('Enemy', function () {
       this.die();
-    })
-    .onHit('Ground', function () {
-      this._gy = 0;
     });
+
   },
 
   // Powerups given by collectibles
@@ -51,6 +56,32 @@ Crafty.c('Player', {
     this.color(colormap[comp]);
   },
 
+  // Input
+  _handleInput: function() {
+
+    // Jump
+    if (this.isDown('SPACE')) {
+      this._gy = -6;
+      this._falling = true;
+      this.active = true;
+
+    // Zap attack
+    } else if (this.isDown('J')) {
+      if (this.powerups.has('Zapper')) {
+        this._zap('left');
+        this._zap('down');
+        this._zap('up');
+        this._zap('right');
+      } else {
+        this._zap(this.dX > 0 ? 'right' : 'left');
+      }
+
+    // Hold position (for editing)
+    } else if (this.isDown('E')) {
+      this.dX = (this.dX ? 0 : this._params.dX);
+    }
+  },
+
   // Update
   _playerStep: function() {
     if (Game.pseudopaused) return;
@@ -61,7 +92,7 @@ Crafty.c('Player', {
   // Zap attack
   _zap: function (dir) {
     Crafty.e('2DCanvasColor, Laser')
-      .color('red')
+      .color('green')
       .duration(1000)
       .fire(this.center.x, this.center.y, dir);
   },
@@ -72,33 +103,9 @@ Crafty.c('Player', {
 
   // Parameters
   start: function(params) {
+    this._params = params;
     this.attr(params);
-    this.bind('EnterFrame', this._playerStep);
 
-    // TODO stuff keybindings into a map for readibility/customization
-    this.bind('KeyDown', function() {
-
-      // Jump
-      if (this.isDown('SPACE')) {
-        this._gy = -6;
-        this._falling = true;
-
-      // Zap attack
-      } else if (this.isDown('J')) {
-        if (this.powerups.has('Zapper')) {
-          this._zap('left');
-          this._zap('down');
-          this._zap('up');
-          this._zap('right');
-        } else {
-          this._zap(this.dX > 0 ? 'right' : 'left');
-        }
-
-      // Hold position (for editing)
-      } else if (this.isDown('E')) {
-        this.dX = (this.dX ? 0 : params.dX);
-      }
-    });
     return this;
   }
 });

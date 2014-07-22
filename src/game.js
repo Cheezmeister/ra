@@ -13,7 +13,7 @@ window.Game = {
 
   start: function() {
 
-    Crafty.init(6000, 1000);
+    Crafty.init(Game.width, Game.height);
     Crafty.background('rgb(0,127,127)');
 
 
